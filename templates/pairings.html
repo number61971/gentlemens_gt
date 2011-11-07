@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block global_location %}games{% endblock %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/pairings.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/pairings.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+<h2>Round {{ round }} Pairings</h2>
+<p>Drag players to adjust pairings. Drag tables to change assignments. Click Save to preserve changes. (Do nothing to keep pairings and table assignments as shown.)</p>
+<ul id="tables" class="sortable">
+  {% for g in games %}
+  <li id="table_{{ g.game.table }}" title="Previously played here: {{ g.table_players }}">{{ g.game.table }}</li>
+  {% endfor %}
+</ul>
+<ul id="players_1" class="connectedSortable">
+  {% for g in games %}
+  <li id="tplayer_{{ g.game.player1.id }}" title="Previous opponents: {{ g.tplayer1_opponents }}"><span class="rank">{{ g.tplayer1_rank }}</span> {{ g.game.player1.player.fullname }}{% if not g.game.player1.active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if g.game.player1.ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %} ({{ g.game.player1.armylist.race.abbrev }})</li>
+  {% endfor %}
+</ul>
+<div id="versus_div">vs</div>
+<ul id="players_2" class="connectedSortable">
+  {% for g in games %}
+  <li id="tplayer_{{ g.game.player2.id }}" title="Previous opponents: {{ g.tplayer2_opponents }}"><span class="rank">{{ g.tplayer2_rank }}</span> {{ g.game.player2.player.fullname }}{% if not g.game.player2.active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if g.game.player2.ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %} ({{ g.game.player2.armylist.race.abbrev }})</li>
+  {% endfor %}
+</ul>
+<form id="pairings_form" action="/gentlemens_gt/games/{{ tournament_id }}/{{ round }}/pairings/update" method="post">
+  <input type="submit" value="Save"/>
+  <input type="hidden" id="id_pairings" name="pairings" value=""/>
+</form>
+{% endblock %}
+
+{% block sidebar %}
+{% ifnotequal round '0' %}
+<form id="round_select_form" action="" method="post">
+  <p>{{ round_select_form.round_number.label }}: {{ round_select_form.round_number }}</p>
+  {{ round_select_form.tournament_id }}
+</form>
+{% endifnotequal %}
+<p><a href="/gentlemens_gt/games/{{ tournament_id }}/{{ round }}">Games Results</a></p>
+{% endblock %}

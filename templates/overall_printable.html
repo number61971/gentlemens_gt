@@ -1,0 +1,47 @@
+{% extends "base_printable.html" %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/overall_printable.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/overall_printable.js"></script>{% endblock %}
+
+{% block content %}
+<div id="print_command">[PRINT]</div>
+<h2>{{ overall_scores.0.player.tplayer.tournament.name }}</h2>
+<h3>Overall</h3>
+<p>The highest overall rank among tournament standings, appearance scores, and sportsmanship scores. Equal weight is given to each aspect. Tiebreakers, if required, are as follows.</p>
+<ul>
+  <li>Black Marks/Highest Discretionary Sportsmanship</li>
+  <li>Highest Extra Effort in Apperance</li>
+  <li>Most Tournament Wins</li>
+</ul>
+<table id="overall_scores">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th colspan="3" class="thspan">Rankings</th>
+    </tr>
+    <tr>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Army</th>
+      <th class="center">Standings</th>
+      <th class="center">Appearance</th>
+      <th class="center">Sportsmanship</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for o in overall_scores %}
+    <tr class="tablerow">
+      <td>{{ o.rank }}</td>
+      <td>{{ o.player.tplayer.player.fullname }}{% if not o.player.tplayer.active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if o.player.tplayer.ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %}</td>
+      <td>{{ o.player.tplayer.armylist.race.name }}</td>
+      <td class="numeric">{{ o.player.tournament_rank }}</td>
+      <td class="numeric">{{ o.player.appearance_rank }}</td>
+      <td class="numeric">{{ o.player.sports_rank }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

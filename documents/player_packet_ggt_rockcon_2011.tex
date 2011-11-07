@@ -1,0 +1,569 @@
+\documentclass[12pt,titlepage]{article}
+\usepackage[letterpaper,pdftex]{geometry}
+\geometry{lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in}
+\usepackage{dashrule,latexsym}
+\pagestyle{headings}
+%\renewcommand{\baselinestretch{1.5}}
+% custom macros
+\newcommand{\inches}[1]{$#1^{\prime\prime}$}
+%
+\newcommand{\dottedline}{\noindent\hdashrule{6.6in}{.5pt}{3pt 2pt}}
+%
+\newcommand{\paragraphsmall}[1]{\noindent\textbf{#1}\quad}
+%
+\newcommand{\gameboilerplate}{This mission follows all the normal rules for games of Warhammer 40,000 as outlined in the \textbf{Organizing a Battle} chapter of the Warhammer 40,000 rulebook (e.g., \textbf{Ending the Game} [p. 90], \textbf{Seize the Initiative!} [p. 92], \textbf{Mission Special Rules} [pp. 94--95], etc.), except as already noted in your tournament rules packet and described below.}
+%
+\newcommand{\gamescoresheet}[1]{\subsection*{Round #1 Scores}
+
+\noindent Your name: \rule{1.35in}{.5pt}\hspace{.25in}Opponent's name: \rule{1.35in}{.5pt}\hspace{.25in}Table \#: \rule{24pt}{.5pt}
+
+\vspace{6pt}
+\noindent\begin{tabular}[t]{@{}l@{\quad}l@{\hspace{1.4in}}l@{\quad}l@{\quad}l@{}}
+ \multicolumn{2}{@{}l@{}}{\textit{Your Objectives}*} & \multicolumn{2}{@{}l@{}}{\textit{Opponent's Objectives}*} \\[3pt]
+ \textbf{Primary} & 4 & \textbf{Primary} & 4 \\[3pt]
+ \textbf{Secondary} & 3 & \textbf{Secondary} & 3 \\[3pt]
+ \textbf{Tertiary} & 2 & \textbf{Tertiary} & 2 \\[3pt]
+ \textbf{Default} & 1 & \textbf{Default} & 1 & {\scriptsize *See pp. 4--5 of this rules packet.}\\[3pt]
+\end{tabular}
+
+\vspace{6pt}
+\noindent$\Box$\quad I would be willing to play this opponent again sometime.
+
+\noindent$\Box$\quad I would be reluctant to play this opponent again in the future.
+
+}
+%
+\newcommand{\pitchedbattle}{This mission employs the \textbf{Pitched Battle} deployment. (See p. 92 of the Warhammer 40,000 rulebook.)}
+%
+\newcommand{\spearhead}{This mission employs the \textbf{Spearhead} deployment. (See p. 93 of the Warhammer 40,000 rulebook.)}
+%
+\newcommand{\dawnofwar}{This mission employs the \textbf{Dawn of War} deployment. (See p. 93 of the Warhammer 40,000 rulebook.)}
+%
+\newcommand{\tablequarters}{\paragraphsmall{Table Quarters} Divide the table into four equal quarters by drawing an imaginary line from the center point of each table edge to the center point of the opposite table edge. Players \textit{claim} a table quarter by having more Victory Points' worth of units---including at least one \textit{Scoring Unit}---in the quarter than their opponent. (The Victory Points rules are on p. 300 of the Warhammer 40,000 rulebook.) A player that has at least as many Victory Points' worth of units in a quarter as their opponent but without any \textit{Scoring Units} has successfully \textit{contested} that quarter.
+
+A unit can only \textit{contest} or \textit{claim} a single table quarter, no matter how many quarters it actually straddles. A unit that is capable of \textit{contesting} or \textit{claiming} more than one table quarter will \textit{contest} or \textit{claim} the quarter where the majority of the unit resides. If you cannot determine in which quarter the majority of a unit resides, the owning player must randomly determine which quarter the unit ``counts as" \textit{claiming} or \textit{contesting}.
+
+The player that \textit{claims} the most table quarters wins this \textbf{Objective}.}
+%
+\newcommand{\victorypoints}{\paragraphsmall{Victory Points} Accumulate at least 250 Victory Points more than your opponent. Employ the Victory Points rules from p. 300 of the Warhammer 40,000 rulebook \textbf{Reference}.}
+%
+\newcommand{\annihilation}{Follow the \textbf{Annihilation} standard mission rules defined on p. 91 of the Warhammer 40,000 rulebook.}
+%
+\newcommand{\captureandcontrol}{Follow the \textbf{Capture and Control} mission rules defined on p. 91 of the Warhammer 40,000 rulebook.}
+%
+\newcommand{\seizeground}[1]{Follow the \textbf{Seize Ground} standard mission rules defined on p. 91 of the Warhammer 40,000 rulebook, except that you must employ #1 objective markers.}
+
+\begin{document}
+\begin{titlepage}
+\title{The Gentlemen's Grand Tournament\\{\large\textit{A Weekend of Bloodletting and Crumpets}}}
+\author{RockCon}
+\date{November 5--6, 2011\\Rockford, Illinois}
+\maketitle
+\end{titlepage}
+
+\section*{Table of Contents}
+\markright{Table of Contents}
+
+\begin{itemize}
+\item Rules and Policies
+  \begin{itemize}
+  \item The Reasonable Gentleman Rule
+  \item Rules Disputes
+  \item Models
+  \item Dice
+  \item Army Lists
+    \begin{itemize}
+    \item Points Limit
+    \end{itemize}
+  \item Terrain
+  \end{itemize}
+\item Scoring
+  \begin{itemize}
+  \item Games
+    \begin{itemize}
+    \item ``Wipeout!" and Default Victory
+    \item Reporting Results and Sportsmanship
+    \end{itemize}
+  \item Voting
+    \begin{itemize}
+    \item Favorite Army
+    \item Favorite Opponent
+    \item The Black Mark
+    \end{itemize}
+  \item Awards
+    \begin{itemize}
+    \item Well Played, Sir!
+    \item Distinguished Gentleman
+    \item Perfect Gentleman
+    \item Man for All Seasons
+    \end{itemize}
+  \end{itemize}
+\item Fiinal Results and Feedback
+\item Schedule
+\item Voting Ballots
+\item Tournament Missions
+  \begin{itemize}
+  \item Round 5: ``Can't Spare Anyone"
+  \item Round 4: ``Five by Five"
+  \item Round 3: ``Cry Havoc!"
+  \item Round 2: ``Grinder"
+  \item Round 1: ``If I Can't Have It \ldots"
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\section*{Rules and Policies}
+\markright{Rules and Policies}
+
+\subsection*{The Reasonable Gentleman Rule}
+
+This event respects all aspects of the Warhammer 40,000 hobby: gaming, painting and modeling, and sportsmanship. Players are expected to conduct themselves as ``proper gentlemen" (and ladies) even while wearing their game faces and slaughtering their foes. After all, the slaughter is all in the name of having fun and appreciating the skill and labor our fellow gentlemen and ladies have poured into their armies.
+
+Players who cheat, collude, or who have otherwise violated the tournament rules may, at the discretion of the Tournament Organizer, have their scores modified or, in extreme cases, be ejected from the event entirely and rendered ineligible for any prizes.
+
+Similarly, players who, in the judgement of the Tournament Organizer, demonstrate egregiously unsportsmanlike conduct may also have their scores modified or be ejected from the event.
+
+\subsection*{Rules Disputes}
+
+The Gentlemen's Grand Tournament does not employ any FAQ or Errata documents beyond those produced by Games Workshop. Players are expected to possess a copy of the Warhammer 40,000 rulebook, their army Codex, and the associated Codex FAQ/Errata document produced by Games Workshop, assuming one exists. (Games Workshop's FAQs are available on their website $<$www.games-workshop.com$>$.)
+
+If, during the course of play, you and your opponent disagree about how to resolve a situation, \textit{calmly} and \textit{rationally} discuss the issue. (Always, \textit{always} remember to be a gentleman!) Make your argument based solely on the Warhammer 40,000 game rules, the rules in your Codex, and the clarifications in your Codex FAQ. Do not cite another event, what you and your mates do back home, or a third-party document (e.g., the INAT FAQ). None of these have any authority at this event.
+
+Hopefully you will resolve the issue and get on happily with your game. However, if it becomes evident that you and your opponent will continue to disagree, you have two options.
+
+\begin{enumerate}
+\item \textbf{The Dice Off.} Both players roll a die. The winner of the roll will be allowed to use his or her interpretation for the duration of the game. After the game has ended please mention the situation and the Dice Off result to a Judge or Tournament Organizer. At this time, the Judge or Tournament Organizer will decide how the situation shall be interpreted for the remainder of the tournament. Whatever the decision, regardless of how it mimics or differs from what happened during the game, the game results shall stand.
+
+\item \textbf{Consult With The Authorities.} Have one or both players summon a Judge or Tournament Organizer to the table and explain the issue to him or her. Once he or she has ruled, the decision is final and both players must abide by it.
+\end{enumerate}
+
+\subsection*{Models}
+
+All models must be fully assembled, painted, based, and flocked. Any model that is not fully painted using at least three different colors and/or is not on a painted/flocked base (for models that require bases, of course; don't worry about mounting your Defilers!) \textit{may not be used for any reason!}
+
+All models must be WYSIWYG. This rule is primarily focused on wargear and similar upgrades. The in-game abilities of every model should be apparent and represented.
+
+Conversions and ``counts as" are allowed and highly encouraged, but the ``Reasonable Gentleman" rule will be in effect. Proactively inform your opponent of your conversions and be willing to remind your opponent during the game itself what your models represent.
+
+That said, conversions and ``counts as" substitutes must be clearly discernible and must be done either for necessity (e.g., because an official model does not exist) or for artistic effect. Lazy ``counts as" conversions will not be allowed. E.g., You cannot mount a shoebox on a post and call it a Stormraven. Nor can you substitute combi-meltas for combi-plasmas on your Space Marines just because you don't actually have combi-plasmas. On the other hand, building a detailed Stormraven out of cardboard or repurposing Tau plasma rifles or missile pods to represent Ork big shootas or rokkits for your characterful Ork \textit{Waaagh!} are perfectly acceptable.
+
+If you are concerned about any of your conversions, please consult with a Judge or Tournament Organizer. Always be forthright with your opponent. Your opponent may ask for clarifications regarding your models at any time.
+
+\subsection*{Dice}
+
+Dice must be rolled on the playing surface within view of both players. You may not roll dice off the playing surface or into a box or other container placed on the playing surface. Any dice rolled in such an item, or rolled so that it goes off the playing surface---even if it lands on the table supporting the playing surface---must be re-rolled.
+
+Of course, it is common that large numbers of dice are rolled to resolve a gaming situation. In these and similar cases, it is strongly recommended that players remove dice marking \textit{failures}, leaving behind the dice marking \textit{successes}, \textit{before} announcing the final result. This greatly eases the accounting for both players.
+
+\subsection*{Army Lists}
+
+You must supply seven \textit{printed} copies of your army list. One must be presented to the Tournament Organizer upon registration. One must be presented to each of your opponents before each game begins. The final copy is for your own use.
+
+Players must use the same army list for the entire tournament. Opponents may ask for details or clarifications regarding the units in your army list at any time.
+
+Armies may be selected from any currently published Codex book from Games Workshop.
+
+\begin{itemize}
+\setlength{\itemsep}{-1pt}
+\item Codex: Black Templars
+\item Codex: Blood Angels
+\item Codex: Chaos Daemons
+\item Codex: Chaos Space Marines
+\item Codex: Dark Angels
+\item Codex: Dark Eldar
+\item Codex: Eldar
+\item Codex: Grey Knights
+\item Codex: Imperial Guard
+\item Codex: Necrons
+\item Codex: Orks
+\item Codex: Sisters of Battle
+\item Codex: Space Marines
+\item Codex: Space Wolves
+\item Codex: Tau Empire
+\item Codex: Tyranids
+\end{itemize}
+
+\subsubsection*{Points Limit}
+
+Army lists shall total no more than 1,850 points.
+
+\subsection*{Terrain}
+
+Players may not alter the terrain on the gaming tables. However, it is incumbent upon the players to determine the effects that terrain will have as outlined in the \textbf{Define the Terrain} section on p. 88 of the Warhammer 40,000 rule book.
+
+\section*{Scoring}
+\markright{Scoring}
+
+\subsection*{Games}
+
+Each round of the tournament has a unique combination of victory conditions defined by its mission description. (See the \textbf{Tournament Missions} at the end of this packet.) Every mission defines \textbf{Primary}, \textbf{Secondary}, and \textbf{Tertiary Objectives}, each of which are worth a fixed amount of \textbf{Mission Points}.
+
+\begin{itemize}
+\setlength{\itemsep}{0pt}
+\item \textbf{Primary Objectives} are worth \textbf{4 Mission Points}.
+\item \textbf{Secondary Objectives} are worth \textbf{3 Mission Points}.
+\item \textbf{Tertiary Objectives} are worth \textbf{2 Mission Points}.
+\end{itemize}
+
+\noindent The player who earns the most \textbf{Mission Points} wins the game!
+
+In order to claim the \textbf{Mission Points} for an \textbf{Objective}, \textit{one and only one} player must satisfy the conditions for that \textbf{Objective}. If neither player satisfies an \textbf{Objective's} conditions---or if \textit{both} players satisfy an \textbf{Objective's} conditions (i.e., they \textit{draw} that \textbf{Objective}---\textit{neither player can claim it}.
+
+\subsubsection*{``Wipeout!" and Default Victory}
+
+If you satisfy the \textbf{Wipeout!} victory condition as outlined on p. 90 of the Warhammer 40,000 rulebook (i.e., you eliminate every enemy unit before the final game turn), \textit{continue to play the game}. You will only score \textbf{Mission Points} for those \textbf{Objectives} that you actually qualify for when the game actually ends.
+
+However, if you \textbf{Wipeout!} your opponent but are still unable to score any \textbf{Objectives}, you will earn \textbf{1 Mission Point} for \textbf{Default Victory}.
+
+\subsubsection*{Reporting Results and Sportsmanship}
+
+The bottom portion of the page defining each round's mission parameters is a score sheet. Fill it out and bring it to the Tournament Organizer's table to report your game results. You must present your score sheet simultaneously with your opponent's score sheet so that a Judge or Tournament Organizer can check that the reported game results from each player agree.
+
+Be sure to check off the \textbf{Sportsmanship} rating for your opponent. Your score sheet will not be accepted until you do. This selection should be made privately, so don't share your score sheet with your opponent after you have made your selection.
+
+\textbf{Sportsmanship} is always a simple either/or choice and should not be perceived as ``a big deal". That's reserved for \textbf{Favorite Army} and \textbf{Black Mark} votes. See below.
+
+\subsection*{Voting}
+
+This packet includes a page with three voting ballots. You will turn in each ballot independently as outlined below.
+
+\subsubsection*{Favorite Army}
+
+By the time you report the scores for your third round game on Saturday, you must nominate one army other than your own as your \textbf{Favorite Army}. Beyond the suggestion that you should make your selection based on how it looks, there are no defined criteria. It's up to you to decide! Your vote is registered both secretly and anonymously.
+
+Your best opportunity to judge your fellow participant's armies will be during the initial morning registration period on Saturday morning, before the first round of games is played.
+
+\subsubsection*{Favorite Opponent}
+
+When you report the scores for your final game (Round 5) on Sunday, you must also present your ballot for \textbf{Favorite Opponent}. The player you nominate must be someone you actually played, and is the opponent you most appreciated playing. Your vote is registered both secretly and anonymously.
+
+\subsubsection*{The Black Mark}
+
+When you report the scores for your final game (Round 5) on Sunday, you \textit{may} also present a completed \textbf{Black Mark} ballot. The \textbf{Black Mark} is purely \textit{optional}. You are \textit{not} required to complete it! Ideally, \textit{nobody} will deserve such censure.
+
+The \textbf{Black Mark} is serious business. As with the \textbf{Favorite Opponent} vote, you can only nominate \textit{one} of your previous opponents. To be deserving of this vote, the opponent must be someone that was truly unpleasant to face. Your experience playing this person is one that you hope to never again repeat. The game you played besmirched your experience of this tournament.
+
+As with all votes, a \textbf{Black Mark} is registered secretly. No participants will ever know that you lodged this vote. However, a \textbf{Black Mark} vote is \textit{not} made anonymously! You must attach your name to the ballot along with your opponent's. And you must also supply one more reasons detailing why you believe the opponent so nominated deserves the \textbf{Mark}. Failing to do either of these things will result in the vote being discarded.
+
+\subsection*{Awards}
+
+Several awards will be presented at the tournament. Regardless of scoring, no participant may earn more than one award. If a participant is eligible for multiple awards, the Tournament Organizer shall decide which one to present to that person, promoting the next highest ranked participant for the other award(s).
+
+The following awards are all ``top" (first place) prizes, and are considered by the Tournament to be equivalent.
+
+\subsubsection*{Well Played, Sir!}
+
+This award goes to the player with the best Win/Loss record. The margin of victory is not important, Wins are all that count. However, if tiebreaks are required, they are as follows.
+
+\begin{itemize}
+\item Total \textbf{Mission Points}
+\item Total \textbf{Primary Objectives}
+\item Total \textbf{Secondary Objectives}
+\item Total \textbf{Tertiary Objectives}
+\end{itemize}
+
+\subsubsection*{Distinguished Gentleman}
+
+This award goes to the player with the highest army appearance rating. This score is a composite of a tournament adjudicated score (85\%) and \textbf{Favorite Army} votes (15\%). Tiebreakers are as follows.
+
+\begin{itemize}
+\item Adjudicated score
+\item \textbf{Favorite Army} votes
+\item Judge's discretion
+\end{itemize}
+
+\subsubsection*{Perfect Gentleman}
+
+This award goes to the player with the highest sportsmanship rating. Players accrue (or possibly lose) a variable number of points based on game-reported \textbf{Sportsmanship}, \textbf{Favorite Opponent} votes, \textbf{Black Mark} votes, and, potentially, observations by Judges and Tournament Organizers logged over the course of the tournament. Tiebreakers are as follows.
+
+\begin{itemize}
+\setlength{\itemsep}{0pt}
+\item \textbf{Black Marks} (i.e., the lack thereof)
+\item \textbf{Favorite Opponent} votes
+\item Game-reported \textbf{Sportsmanship}
+\item Judge's Discretion
+\end{itemize}
+
+\subsubsection*{Man for All Seasons}
+
+This award goes the player with the highest combined ranking for each of the other three awards, one third each for \textbf{Well Played, Sir!}, \textbf{Distinguished Gentleman}, and \textbf{Perfect Gentleman}. In the unlikely event that tiebreakers are required, the award will be determined by judge's discretion.
+
+\section*{Final Results and Feedback}
+\markright{Final Results and Feedback}
+
+While the award winners will be announced at the end of the tournament, the complete final results for all participants in each award category will be posted, within a reasonable amount of time, online in the following web forums.
+
+\begin{itemize}
+\setlength{\itemsep}{0pt}
+\item Madison 40K $<$madison40k.com$>$
+\item Adeptus Windy City $<$adeptuswindycity.com/forums$>$
+\item Adeptus Brew City $<$adeptusbrewcity.darkbb.com$>$
+\item The Bolter and Chainsword $<$www.bolterandchainsword.com$>$
+\item DakkaDakka $<$www.dakkadakka.com$>$
+\item Warseer $<$www.warseer.com/forums$>$
+\item D-Company $<$www.d-company-wi.com$>$
+\item Terrain Specialties $<$z15.invisionfree.com/Terrain\_Specialties/index.php$>$
+\end{itemize}
+
+Each of these forums has a ``tournaments" or ``events" subforum containing a post announcing the Gentlemen's Grand Tournament, and where periodic updates have already been published. These topics will be updated with the complete final tallies.
+
+Time permitting, final results for each award category may also be printed out and posted at RockCon itself as well.
+
+You are encouraged to supply feedback regarding your experiences at the tournament, be they positive or negative. Please send an email with your thoughts to me, Damon Butler $<$iamdamocles@gmail.com$>$. Alternatively, if you are a member of any of the aforementioned web forums, you may send a private message to \textbf{number6}.
+
+Thank you for participating! I hope you enjoyed the bloodletting, if not the crumpets.
+
+\newpage
+
+\section*{Schedule}
+\markright{Schedule}
+
+\subsection*{Day 1: Saturday, November 5}
+
+\begin{tabular}[t]{@{}l@{\quad}l@{}}
+\phantom{1}9:00 AM--10:00 AM & Player registration, army appearance judging \\
+10:00 AM--12:15 PM & Round 1 \\
+12:15 PM--\phantom{1}1:00 PM & Lunch, army appearance judging completion (if required) \\
+\phantom{1}1:00 PM--\phantom{1}3:15 PM & Round 2 \\
+\phantom{1}3:30 PM--\phantom{1}5:45 PM &  Round 3 \\
+\end{tabular}
+
+\subsection*{Day 2: Sunday, November 6}
+
+\begin{tabular}[t]{@{}l@{\quad}l@{}}
+\phantom{1}9:00 AM--11:15 AM & Round 4 \\
+11:30 AM--\phantom{1}1:45 PM & Round 5 \\
+\phantom{1}1:45 PM--\phantom{1}2:00 PM & Awards Presentation \\
+\end{tabular}
+
+\newpage
+
+\pagestyle{empty}
+\section*{Black Mark}
+
+You \textit{may} nominate one of your opponents to receive a \textbf{Black Mark}. See page 6 of your tournament rules packet for guidelines before submitting your vote. \textit{If} you wish to submit this vote, turn it in after your final (Round 5) game on Sunday.
+
+\vspace{24pt}
+
+\noindent Your name: \rule{1.8in}{.5pt}\hspace{.5in}Opponent's name: \rule{1.8in}{.5pt}
+
+\vspace{12pt}
+\noindent Reason(s): \rule{5.7in}{.5pt}
+
+\vspace{12pt}
+\noindent\rule{6.5in}{.5pt}
+
+\vspace{12pt}
+\noindent\rule{6.5in}{.5pt}
+
+\vspace{12pt}
+\dottedline
+
+\section*{Favorite Opponent}
+
+You \textit{must} nominate one of your opponents as your \textbf{Favorite Opponent}. See page 5 of your tournament rules packet for guidelines. Please submit this vote after your final (Round 5) game on Sunday.
+
+\vspace{12pt}
+\noindent Opponent's name: \rule{5.25in}{.5pt}
+
+\vspace{108pt}
+\dottedline
+
+\section*{Favorite Army}
+
+You \textit{must} nominate one tournament participant as having created your \textbf{Favorite Army}. See page 5 of your tournament rules packet for guidelines. Please submit this vote by the time you finish your Round 3 game on Saturday.
+
+\vspace{12pt}
+\noindent Player's name: \rule{5.25in}{.5pt}
+
+\newpage
+\section*{Round 5}
+\vspace{-6pt}
+\subsection*{Can't Spare Anyone}
+
+\gameboilerplate
+
+\vspace{-6pt}
+\subsubsection*{Deployment}
+
+\pitchedbattle
+
+\vspace{-6pt}
+\subsubsection*{Primary Objective}
+
+\paragraphsmall{Grunt Basher} Destroy at least 4 of your opponent's \textit{Scoring} Troops units, including any \textit{Scoring} Troops units that are generated during the course of play. However, if your opponent has fewer than 4 \textit{Scoring} Troops units in their army list, you must instead destroy all of your opponent's non-vehicular Troops units, excluding any Troops units (\textit{Scoring} or not) that are generated during the course of play.
+
+\vspace{-6pt}
+\subsubsection*{Secondary Objective}
+
+\paragraphsmall{Dig In} Control more terrain pieces than your opponent. Terrain pieces are controlled when one or more of your units are inside or touching the terrain piece and no enemy units are inside or touching the terrain piece. Any unit except dedicated transports can \textit{claim} a terrain piece. Any unit can \textit{contest} ownership of a terrain piece.
+
+\vspace{-6pt}
+\subsubsection*{Tertiary Objective}
+
+\paragraphsmall{Domination} Have more Victory Points' worth of units---including at least one \textit{Scoring Unit}---within \inches{12} of the table's center point than your opponent. At least 50\% of a unit must reside within this area to count. A player that has at least as many Victory Points' worth of units within range of the center as their opponent but without any \textit{Scoring Units} has successfully \textit{contested} this \textbf{Objective}.
+
+\dottedline
+
+\vspace{-12pt}
+\gamescoresheet{5}
+
+\newpage
+\section*{Round 4}
+\vspace{-12pt}
+\subsection*{Five by Five}
+
+{\footnotesize
+\gameboilerplate
+
+\vspace{-9pt}
+\subsubsection*{Deployment}
+
+\vspace{-2pt}
+\pitchedbattle
+
+\vspace{-9pt}
+\subsubsection*{Primary Objective}
+
+\vspace{-2pt}
+\paragraphsmall{Marked For Death} Both players openly nominate 5 units (not Force Organization choices, \textit{units}) from their opponent's army list, marking these choices on their copy of the army list.  Each player earns a ``Marked for Death" Kill Point for completely destroying each marked unit. The player who earns the most ``Marked for Death" Kill Points wins this \textbf{Objective}.
+
+If a player marks a unit that can break down into multiple smaller units at deployment (e.g., Space Marines Tactical Squad), any of the constituent units will count for the ``Marked for Death" condition when destroyed. Even if all of the constituent squads are destroyed, the player only gets credit for the 1 ``Marked" Kill Point. The first constituent squad destroyed will surrender the Kill Point.
+
+If a player initially ``Marks" a unit that is later merged together with other units at deployment (e.g., Imperial Guard Infantry Platoon squads), there are two possible outcomes. In the case where multiple units are merged but not all of them were initially ``Marked", the player may immediately select an entirely different unit (or units) to ``Mark for Death". If the player does not ``Mark" a different unit (or units), he or she must destroy the entire merged unit to claim his or her ``Marked" Kill Point(s). In the case where \textit{all} of the units that merged together were initially ``Marked", the player \textit{must} kill the \textit{entire} merged unit to claim his or her ``Marked" Kill Points. The player may not select another unit (or units).
+
+A ``Marked" unit that is destroyed but later reenters play (e.g., Saint Celestine) only surrenders a single ``Marked for Death" Kill Point when initially destroyed.
+
+Units that are created during the course of play (e.g., Termagants created by Tervigons) may never be ``Marked for Death".
+
+\vspace{-9pt}
+\subsubsection*{Secondary Objective}
+
+\vspace{-2pt}
+\seizeground{5}
+
+\vspace{-9pt}
+\subsubsection*{Tertiary Objective}
+
+\vspace{-2pt}
+\victorypoints
+
+}
+
+\vspace{-3pt}
+\dottedline
+
+\vspace{-15pt}
+\gamescoresheet{4}
+
+\newpage
+\section*{Round 3}
+\vspace{-6pt}
+\subsection*{Cry Havoc!}
+
+\gameboilerplate
+
+\vspace{-2pt}
+\subsubsection*{Deployment}
+
+\spearhead
+
+\vspace{-2pt}
+\subsubsection*{Primary Objective}
+
+\paragraphsmall{Vital Tech} Follow the \textbf{Seize Ground} standard mission rules defined on p. 91 of the Warhammer 40,000 rulebook, except that you must employ 3 objective markers. One objective marker must be placed in the exact center of each non-deployment table quarter, and one objective marker must be placed in the exact center of the table.
+
+\vspace{-2pt}
+\subsubsection*{Secondary Objective}
+
+\paragraphsmall{Slaughter} Accumulate at least 750 Victory Points. Employ the Victory Points rules from p. 300 of the Warhammer 40,000 rulebook \textbf{Reference}.
+
+\vspace{-2pt}
+\subsubsection*{Tertiary Objective}
+
+\paragraphsmall{Overrun} Have more Victory Points' worth of units---including at least one \textit{Scoring Unit}---in your opponent's deployment zone than your opponent has in your own deployment zone. (\textit{Not} your opponent's deployment table quarter, your opponent's \textit{deployment zone!}) A \textit{majority} of a unit must be within the zone to count. A player that has at least as many Victory Points' worth of units in their opponent's deployment zone as their opponent---but without any \textit{Scoring Units}---has successfully \textit{contested} this \textbf{Objective}.
+
+\dottedline
+
+\gamescoresheet{3}
+
+\newpage
+\section*{Round 2}
+\vspace{-6pt}
+\subsection*{Grinder}
+
+{\footnotesize
+\gameboilerplate
+
+\vspace{-4pt}
+\subsubsection*{Game Length}
+
+This game cannot end before the 6th turn.
+
+\vspace{-4pt}
+\subsubsection*{Deployment}
+
+\dawnofwar
+
+\vspace{-4pt}
+\subsubsection*{Primary Objective}
+
+\captureandcontrol
+
+\vspace{-4pt}
+\subsubsection*{Secondary Objective}
+
+\tablequarters
+
+\vspace{-4pt}
+\subsubsection*{Tertiary Objective}
+
+\victorypoints
+
+}
+\dottedline
+
+\gamescoresheet{2}
+
+\newpage
+\section*{Round 1}
+\vspace{-6pt}
+\subsection*{If I Can't Have It \ldots}
+{\footnotesize
+\gameboilerplate
+
+\subsubsection*{Deployment}
+
+\pitchedbattle
+
+\subsubsection*{Primary Objective}
+
+\paragraphsmall{Defend the Flag} After determining who goes first, but before deploying their armies, the players alternate turns placing a total of 6 objective markers, starting with the player who has the first turn.
+
+\begin{itemize}
+\setlength{\itemsep}{0pt}
+\item The 1st objective marker each player places must be positioned in their own deployment zone.
+\item The 2nd objective marker each player places must be positioned in their opponent's deployment zone.
+\item The 3rd objective marker each player places may be positioned anywhere in their opponent's half of the table.
+\end{itemize}
+
+Objective markers must be at least \inches{6} away from any board edge and \inches{12} away from any other objective marker.
+
+While you \textit{claim} and \textit{contest} any objective markers according to the \textbf{Seize Ground} standard mission rules defined on p. 91 of the Warhammer 40,000 rulebook, the only ones that each player may count toward winning the ``Defend the Flag" Objective are the objective markers that have been placed in their half of the table. Thus, the maximum number of objective markers either player can \textit{claim} for the purposes of winning the \textbf{Primary Objective} is three.
+
+\subsubsection*{Secondary Objective}
+
+\annihilation
+
+\subsubsection*{Tertiary Objective}
+
+\paragraphsmall{Lead by Example} Have one of your HQ Independent Character, Monstrous Creature, or Walker models anywhere within \inches{16} of your opponent's deployment table edge at the end of the game.
+
+}
+
+\dottedline
+
+\gamescoresheet{1}
+
+\end{document}

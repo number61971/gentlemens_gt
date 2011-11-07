@@ -1,0 +1,38 @@
+{% extends "base_printable.html" %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/games_printable.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/games_printable.js"></script>{% endblock %}
+
+{% block content %}
+<div id="print_command">[PRINT]</div>
+<h2>{{ round_obj.tournament.name }}</h2>
+<h3>Round {{ round_obj.round }} Game Results</h3>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th class="thspan" colspan="2">Player 1</th>
+      <th class="thspan" colspan="2">Player 2</th>
+    </tr>
+    <tr>
+      <th>Table</th>
+      <th>Name</th>
+      <th class="center">Mission<br/>Points</th>
+      <th>Name</th>
+      <th class="center">Mission<br/>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for g in games_data %}
+    <tr class="tablerow">
+      <td>{{ g.table }}</td>
+      <td><!--<span class="rank">{{ g.player1_rank }}</span> -->{{ g.player1_name }}{% if not g.player1_active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if g.player1_ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %} ({{ g.player1_race }})</td>
+      <td class="center editable_mission_points">{{ g.player1_mission_points }}</td>
+      <td><!--<span class="rank">{{ g.player2_rank }}</span> -->{{ g.player2_name }}{% if not g.player2_active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if g.player2_ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %} ({{ g.player2_race }})</td>
+      <td class="center editable_mission_points" id="game_{{ g.game_id }}_p2" title="Click to edit">{{ g.player2_mission_points }}</td>
+    </tr>
+    {% endfor %}
+  <tbody>
+</table>
+{% endblock %}

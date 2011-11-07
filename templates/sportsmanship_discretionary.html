@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block global_location %}sports{% endblock %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/sportsmanship_discretionary.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/sportsmanship_discretionary.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+<h2>Edit Sportsmanship: Judge's Discretion</h2>
+<h3>{{ tplayer.player.fullname }}</h3>
+<form id="sportsmanship_edit" action="/gentlemens_gt/sports/discretionary/update" method="post">
+  <div>
+    {{ form.judges_discretion_sportsmanship.label }}:
+    {{ form.judges_discretion_sportsmanship }}
+    {% if form.judges_discretion_sportsmanship.errors %}
+    <span class="error">Enter an integer value.</span>
+    {% endif %}
+  </div>
+  <div>If you enter a score, you <i>must</i> provide one or more reasons below.</div>
+  <fieldset><legend>{{ form.judges_discretion_reason.label }}</legend>
+    {{ form.judges_discretion_reason }}
+  </fieldset>
+  <div><input type="submit" value="Save"/>
+    <input type="button" id="cancel_button" value="Cancel"/>
+  </div>
+  <input type="hidden" name="id" value="{{ tplayer.id }}"/>
+  <input type="hidden" id="tournament_id" name="tournament_id" value="{{ tournament_id }}"/>
+</form>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

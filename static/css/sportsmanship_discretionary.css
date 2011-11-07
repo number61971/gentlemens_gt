@@ -1,0 +1,4 @@
+fieldset { margin-top:1em }
+legend+div { margin-top:0 }
+#id_judges_discretion_sportsmanship { width:2em }
+#id_judges_discretion_reason { width:98%; height:5em }

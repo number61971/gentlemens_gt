@@ -1,0 +1,10 @@
+body { font-size:12px }
+#print_command { float:right; color:blue; text-decoration:underline }
+#print_command:hover { cursor:pointer; text-decoration:none }
+#appearance_scores { width:100%; font-size:.8em; }
+#appearance_scores th { vertical-align:bottom; font-size:.9em }
+#appearance_scores th, #appearance_scores td, #no_appearance_scores th, #no_appearance_scores td { padding-right:.5em, vertical-align:top }
+.numeric { text-align:right }
+.total { font-weight:bold }
+.composite { font-style:italic }
+.tablerow td { border-top:1px dotted gray }

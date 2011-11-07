@@ -1,0 +1,71 @@
+{% extends "base_printable.html" %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/standings_printable.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/standings_printable.js"></script>{% endblock %}
+
+{% block content %}
+<div id="print_command">[PRINT]</div>
+<h2>{{ round_obj.tournament.name }}</h2>
+<h3>Round {{ round_obj.round }} Standings</h3>
+<p>Tiebreakers are as follows.</p>
+<ul>
+  {% ifequal ranking_method 'record' %}
+  <li>Total Mission Points</li>
+  <li>Primary Objectives</li>
+  <li>Secondary Objectives</li>
+  <li>Tertiary Objectives</li>
+  {% endifequal %}
+  {% ifequal ranking_method 'battle' %}
+  <li>Wins</li>
+  <li>Primary Objectives</li>
+  <li>Secondary Objectives</li>
+  <li>Tertiary Objectives</li>
+  {% endifequal %}
+  {% ifequal ranking_method 'mission' %}
+  <li>Wins</li>
+  <li>Battle Points</li>
+  <li>Primary Objectives</li>
+  <li>Secondary Objectives</li>
+  <li>Tertiary Objectives</li>
+  {% endifequal %}
+</ul>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th class="thspan" colspan="2">Points</th>
+      <th class="thspan" colspan="3">Objectives</th>
+    </tr>
+    <tr>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Army</th>
+      <th>Record</th>
+      <th>Battle</th>
+      <th>Mission</th>
+      <th>Prim</th>
+      <th>Sec</th>
+      <th>Tert</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in players %}
+    <tr class="tablerow">
+      <td style="white-space:nowrap">{{ p.rank }}</td>
+      <td>{{ p.name }}{% if not p.active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if p.ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %}</td>
+      <td>{{ p.race }}</td>
+      <td class="center">{{ p.results.W }}-{{ p.results.L }}-{{ p.results.D }}</td>
+      <td class="center">{{ p.results.battle_points }}</td>
+      <td class="center">{{ p.results.mission_points }}</td>
+      <td class="center">{{ p.results.primary_objectives }}</td>
+      <td class="center">{{ p.results.secondary_objectives }}</td>
+      <td class="center">{{ p.results.tertiary_objectives }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

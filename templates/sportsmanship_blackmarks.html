@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block global_location %}sports{% endblock %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/sportsmanship_blackmarks.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/sportsmanship_blackmarks.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+<h2>Edit Sportsmanship: Black Marks</h2>
+<h3>{{ tplayer.player.fullname }}</h3>
+<div id="new_blackmark" class="fakelink" {% if valid_form %}{% else %}style="display:none;"{% endif %}>Add Black Mark</div>
+<form id="blackmark_form" action="/gentlemens_gt/sports/blackmarks/new" method="post" {% if valid_form %}style="display:none;"{% endif %}>
+  <fieldset>
+    <table>
+      <tbody>
+        <tr>
+          <td class="label">{{ form.rated_by.label }}:</td>
+          <td class="data">{{ form.rated_by }}</td>
+        </tr>
+        <tr>
+          <td class="label">{{ form.reason.label }}:</td>
+          <td class="data">{{ form.reason }}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <input type="Submit" value="Submit"/>
+            <input type="button" value="Cancel" id="cancel_button"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  {{ form.player }}
+</form>
+{% if black_marks %}
+<table style="width:95%">
+  <thead>
+    <th class="rated_by_column">Given By</th>
+    <th class="reason_column">Reason</th>
+    <th class="delete_column"></th>
+  </thead>
+  <tbody>
+    {% for b in black_marks %}
+    <tr id="blackmark_{{ b.id }}" class="tablerow">
+      <td id="blackmark_ratedby_{{ b.id }}" class="rated_by_column">{{ b.rated_by.player.fullname }}</td>
+      <td id="blackmark_reason_{{ b.id }}" class="reason_column editable_textarea">{% autoescape off %}{{ b.reason }}{% endautoescape %}</td>
+      <td class="delete_column"><img id="delete_blackmark_{{ b.id }}" src="/gentlemens_gt/static/img/action_delete.png" alt="Delete" title="Delete this black mark" class="fakelink"/></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No Black Marks associated with this player.</p>
+{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+<p><a href="/gentlemens_gt/sports/{{ tournament_id }}">Sportsmanship Scores</a></p>
+{% endblock %}

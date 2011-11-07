@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Familiar 
+Description: A two-column, fixed-width design for 1024x768 screen resolutions.
+Version    : 1.0
+Released   : 20091206
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/base.css"/>
+  <link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/ui-darkness/jquery-ui.custom.css"/>
+  {% block localCSS %}{% endblock %}
+  <!--
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load("jquery", "1");
+    google.load("jqueryui", "1");
+  </script>
+  -->
+  <script type="text/javascript" src="/gentlemens_gt/static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/gentlemens_gt/static/js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="/gentlemens_gt/static/js/jquery.autogrow.js"></script>
+  <script type="text/javascript" src="/gentlemens_gt/static/js/jquery.jeditable.mini.js"></script>
+  <script type="text/javascript" src="/gentlemens_gt/static/js/jquery.jeditable.hdd_extensions.js"></script>
+  <script type="text/javascript" src="/gentlemens_gt/static/js/cookies.js"></script>
+  <script type="text/javascript" src="/gentlemens_gt/static/js/globals.js"></script>
+  {% block topJS %}{% endblock %}
+  <title>{% block title %}Gentlemen&rsquo;s GT{% endblock %}</title>
+</head>
+<body>
+	<div id="logo">
+    <h1><a href="/gentlemens_gt">{% block masthead %}The Gentlemen&rsquo;s Grand Tournament{% endblock %}</a></h1>
+    <p><em>{% block tagline %}For one bloodsoaked weekend, there is only war!{% endblock %}</em></p>
+	</div>
+	<!-- end #logo -->
+	<div id="header">
+		<div id="menu">
+			<ul>
+				<li><a id="nav-global-players" href="/gentlemens_gt/players">Players</a></li>
+				<li><a id="nav-global-games" href="/gentlemens_gt/games">Games</a></li>
+				<li><a id="nav-global-standings" href="/gentlemens_gt" class="first">Standings</a></li>
+				<li><a id="nav-global-appearance" href="/gentlemens_gt/appearance">Appearance</a></li>
+				<li><a id="nav-global-sports" href="/gentlemens_gt/sports">Sportsmanship</a></li>
+				<li><a id="nav-global-overall" href="/gentlemens_gt/overall">Overall</a></li>
+			</ul>
+		</div>
+		<!-- end #menu -->
+		<div id="tournament">
+			<form id="tournament_select" method="post" action="">
+				<fieldset>
+          {{ tournament_choice.tournament }}<br/>
+          <a id="edit_selected_tournament" href="">edit</a>
+          <a href="/gentlemens_gt/tournament/0">create</a>
+          {% ifnotequal tournament_id '0' %}<a href="/gentlemens_gt/tournament/{{ tournament_id }}/notes">notes</a> ({{ tournament_notes_count }}){% endifnotequal %}
+				</fieldset>
+			</form>
+		</div>
+		<!-- end #tournament -->
+	</div>
+	<!-- end #header -->
+	<!-- end #header-wrapper -->
+	<div id="page">
+		<div id="content">
+{% block content %}{% endblock %}
+		</div><!-- end #content -->
+		<div id="sidebar">
+{% block sidebar %}{% endblock %}
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+	<div id="footer">
+		<p>Copyright (c) 2008 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+	</div>
+	<!-- end #footer -->
+  <form id="nav-location-form" action="">
+    <div>
+      <input id="nav-global-location" type="hidden" value="nav-global-{% block global_location %}{% endblock %}"/>
+    </div>
+  </form>
+</body>
+</html>

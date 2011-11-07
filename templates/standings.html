@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block global_location %}standings{% endblock %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/standings.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/standings.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+<h2>Round {{ round }} Standings</h2>
+{% ifnotequal round '0' %}
+<p>Tiebreakers are as follows.</p>
+<ul>
+  {% ifequal ranking_method 'record' %}
+  <li>Total Mission Points</li>
+  <li>Primary Objectives</li>
+  <li>Secondary Objectives</li>
+  <li>Tertiary Objectives</li>
+  {% endifequal %}
+  {% ifequal ranking_method 'battle' %}
+  <li>Wins</li>
+  <li>Primary Objectives</li>
+  <li>Secondary Objectives</li>
+  <li>Tertiary Objectives</li>
+  {% endifequal %}
+  {% ifequal ranking_method 'mission' %}
+  <li>Wins</li>
+  <li>Battle Points</li>
+  <li>Primary Objectives</li>
+  <li>Secondary Objectives</li>
+  <li>Tertiary Objectives</li>
+  {% endifequal %}
+</ul>
+<table id="standings">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th class="thspan" colspan="2">Points</th>
+      <th class="thspan" colspan="3">Objectives</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Army</th>
+      <th>Record</th>
+      <th>Battle</th>
+      <th>Mission</th>
+      <th>Prim</th>
+      <th>Sec</th>
+      <th>Tert</th>
+    </tr>
+  </thead>
+  {% for p in players %}
+  <tbody class="tablerow">
+    <tr>
+      <td class="column1"><span class="show_results" id="show_results_{{ p.tplayer_id }}" title="Click to show game history">+</span></td>
+      <td style="white-space:nowrap">{{ p.rank }}</td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ p.player_id }}">{{ p.name }}</a>{% if not p.active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if p.ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %}</td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ p.tplayer_id }}/army_list">{{ p.race }}</a></td>
+      <td class="center">{{ p.results.W }}-{{ p.results.L }}-{{ p.results.D }}</td>
+      <td class="center">{{ p.results.battle_points }}</td>
+      <td class="center">{{ p.results.mission_points }}</td>
+      <td class="center">{{ p.results.primary_objectives }}</td>
+      <td class="center">{{ p.results.secondary_objectives }}</td>
+      <td class="center">{{ p.results.tertiary_objectives }}</td>
+    </tr>
+    <tr id="results_{{ p.tplayer_id }}" style="display:none">
+      <td class="column1"></td>
+      <td colspan="9">
+        <table class="player_results_summary">
+          <thead>
+            <tr>
+              <th>Round</th>
+              <th>Table</th>
+              <th>Opponent</th>
+              <th>Result</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for g in p.games %}
+            <tr>
+              <td><a href="/gentlemens_gt/games/{{ tournament_id }}/{{ g.round }}">{{ g.round }}</a></td>
+              <td>{{ g.table }}</td>
+              <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ g.opponent.player.id }}">{{ g.opponent.player.fullname }}</a>{% if not g.active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if g.ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %} (<a href="/gentlemens_gt/players/{{ tournament_id }}/{{ g.opponent.id }}/army_list">{{ g.opponent.armylist.race.abbrev }})</td>
+              <td>{{ g.result }}</td>
+              <td><a href="/gentlemens_gt/games/{{ tournament_id }}/{{ g.game_id }}/notes">Notes</a> ({{ g.notes.count }})</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{% else %}
+<p>No games yet played in this tournament.</p>
+{% if player_count %}
+<p>You need to <a href="/gentlemens_gt/games/{{ tournament_id }}/new_round">begin a new round of games</a>.</p>
+{% else %}
+<p>You need to <a href="/gentlemens_gt/players/{{ tournament_id }}">add players to the tournament</a> before you can set up games.</p>
+{% endif %}
+{% endifnotequal %}
+{% endblock %}
+
+{% block sidebar %}
+{% ifnotequal round '0' %}
+<form id="round_select_form" action="" method="post">
+  <p>{{ round_select_form.round_number.label }}: {{ round_select_form.round_number }}</p>
+  {{ round_select_form.tournament_id }}
+</form>
+{% if inactive_players %}
+{% if include_inactives %}
+<p><a href="/gentlemens_gt/standings/{{ tournament_id }}/{{ round }}">Hide Inactive Players</a></p>
+{% else %}
+<p><a href="/gentlemens_gt/standings/{{ tournament_id }}/{{ round }}?include_inactives=True">Show Inactive Players</a></p>
+{% endif %}
+{% endif %}
+<p><a href="/gentlemens_gt/games/{{ tournament_id }}/{{ round }}">Review This Round's Results</a>{% if notes_count %}<br/>
+  ({{ notes_count|intcomma }} Notes){% endif %}</p>
+{% if inactive_players %}
+<p>Printable Standings:<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<a id="printable_standings_{{ tournament_id }}_{{ round }}" class="fakelink">actives only</a> | <a id="printable_standings_inactives_{{ tournament_id }}_{{ round }}" class="fakelink">with inactives</a></p>
+{% else %}
+<p><a id="printable_standings_{{ tournament_id }}_{{ round }}" class="fakelink">Printable Standings</a></p>
+{% endif %}
+{% endifnotequal %}
+{% if player_count %}
+<p><a href="/gentlemens_gt/games/{{ tournament_id }}/new_round">Begin a New Round of Games</a></p>
+{% endif %}
+{% endblock %}

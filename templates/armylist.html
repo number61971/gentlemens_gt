@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block global_location %}players{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/armylist.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/armylist.js"></script>{% endblock %}
+
+{% block content %}
+<h2>Army List&mdash;<span style="text-transform:none">{{ tplayer.armylist.points_limit|intcomma }} pts</span></h2>
+<h3 style="margin-bottom:1em">{{ tplayer.player.fullname }}</h3>
+
+<form id="armylist_form" action="/gentlemens_gt/armylist/update" method="post">
+  <fieldset>
+    <div>{{ armylist_form.description.label }}: {{ armylist_form.description }}</div>
+    <div>
+      {{ armylist_form.race.label }}: {{ armylist_form.race }} &nbsp;
+      {{ armylist_form.subrace.label }}: {{ armylist_form.subrace }}
+    </div>
+    <div><input type="submit" value="Update"/></div>
+    <input type="hidden" name="tournament_id" value="{{ tournament_id }}"/>
+    <input type="hidden" name="tplayer_id" value="{{ tplayer.id }}"/>
+  </fieldset>
+</form>
+
+<div id="new_unit" class="fakelink" {% if valid_unit_form %}{% else %}style="display:none;"{% endif %}>Add Unit</div>
+<form id="unit_form" action="/gentlemens_gt/armylist/create_unit" method="post"{% if valid_unit_form %} style="display:none;"{% endif %}>
+  <fieldset>
+    <table>
+      <thead>
+        <tr>
+          <th>Force Org Slot</th>
+          <th>Occupies<br/>Slot</th>
+          <th>No.</th>
+          <th>Type</th>
+          <th>Details</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ unit_form.force_org_slot }}</td>
+          <td>{{ unit_form.occupies_slot }}</td>
+          <td>{{ unit_form.num_models }}
+            {% if unit_form.num_models.errors %}
+            <span class="error">Enter the number of models in the unit.</span>
+            {% endif %}
+          </td>
+          <td>{{ unit_form.type }}
+            {% if unit_form.type.errors %}
+            <span class="error">Enter the unit type.</span>
+            {% endif %}
+          </td>
+          <td>{{ unit_form.details }}</td>
+          <td>{{ unit_form.points_cost }}
+            {% if unit_form.points_cost.errors %}
+            <span class="error">Enter the points cost.</span>
+            {% endif %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <input type="submit" value="Save"/>
+      <input id="unit_cancel" type="button" value="Cancel"/>
+    </div>
+    <input type="hidden" name="tournament_id" value="{{ tournament_id }}"/>
+    <input type="hidden" name="tplayer_id" value="{{ tplayer.id }}"/>
+  </fieldset>
+</form>
+
+{% autoescape off %}{{ armylist }}{% endautoescape %}
+{% endblock %}
+
+{% block sidebar %}
+{% if tplayer.armylist.validate.0 %}
+{% else %}
+<p class="error">Army list is currently illegal.</p>
+<ul id="illegal_army_list_reasons">
+  {% for reason in tplayer.armylist.validate.1 %}
+  <li>{{ reason }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if armylist %}
+<p><a id="printable_armylist_{{ tplayer.armylist.id }}" class="fakelink">Printable Army List</a></p>
+{% endif %}
+{% endblock %}

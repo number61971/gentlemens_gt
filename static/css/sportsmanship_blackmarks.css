@@ -1,0 +1,9 @@
+#blackmark_form table { width: 95% }
+td.label { text-align: right; vertical-align: top; width: 15%; white-space: nowrap }
+td.data { width: 85% }
+#id_reason { height: 4em; width: 100% }
+#new_blackmark { float: right; margin-top: -1.6em }
+td.date_column { width: 15%; vertical-align:top }
+td.reason_column { width: 85% }
+td.delete_column { vertical-align:top }
+.editable_textarea:hover { cursor:pointer }

@@ -1,0 +1,38 @@
+{% extends "base_printable.html" %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/sportsmanship_printable.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/sportsmanship_printable.js"></script>{% endblock %}
+
+{% block content %}
+<div id="print_command">[PRINT]</div>
+<h2>{{ sports_scores.0.player.tournament.name }}</h2>
+<h3>Sportsmanship Scores</h3>
+<p>Tiebreakers, if required, are as follows.</p>
+<ul>
+  <li>Black Marks</li>
+  <li>Favorite Opponent Votes</li>
+  <li>Base Sportsmanship</li>
+  <li>Judge's Discretion</li>
+</ul>
+<table id="sportsmanship_scores">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Army</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in sports_scores %}
+    <tr class="tablerow">
+      <td>{{ s.rank }}</td>
+      <td>{{ s.player.player.fullname }}{% if not s.player.active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if s.player.ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %}</td>
+      <td>{{ s.player.armylist.race.name }}</td>
+      <td class="numeric total">{{ s.player.sportsmanship_score }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

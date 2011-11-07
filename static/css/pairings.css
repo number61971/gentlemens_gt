@@ -1,0 +1,9 @@
+.sortable, .connectedSortable, #versus_div { float:left }
+#versus_div { font-style:italic; width:4em; text-align:center; }
+.sortable, .connectedSortable { list-style-type:none; margin:0; padding:0 }
+.sortable { padding-right:.5em }
+.sortable li, .connectedSortable li { margin-bottom:3px; padding:0px 3px 3px 3px; border:1px solid #282828; cursor:pointer; }
+.sortable li { width:2em }
+.connectedSortable li { width:20em }
+.rank { color:#549900 }
+#pairings_form { clear:both }

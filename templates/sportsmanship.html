@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block global_location %}sports{% endblock %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/sportsmanship.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/sportsmanship.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+<h2>Sportsmanship Scores</h2>
+{% if sports_scores %}
+<p>Click on <b>Fav Opp Votes</b> scores to edit them in place. <i>Refresh the page to see ranking changes as a result of these edits.</i></p>
+<p>Clicking on <b>Black Marks</b> or <b>Discretionary</b> scores will take you to edit pages specific to these scores.</p>
+<p><b>Base</b> Sportsmanship is input with <a href="/gentlemens_gt/games">game results</a>.</p>
+<p>Tiebreakers, if required, are as follows.</p>
+<ul>
+  <li>Black Marks</li>
+  <li>Favorite Opponent Votes</li>
+  <li>Base Sportsmanship</li>
+  <li>Judge's Discretion</li>
+</ul>
+<table id="sportsmanship_scores">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Army</th>
+      <th class="center">Base</th>
+      <th class="center">Fav Opp Votes</th>
+      <th class="center">Black Marks</th>
+      <th class="center">Discretionary</th>
+      <th class="center">Total</th>
+    </tr>
+  </thead>
+  {% for s in sports_scores %}
+  <tbody class="tablerow">
+    <tr>
+      <td class="column1"><span class="show_base_sports" id="show_base_sports_{{ s.player.id }}" title="Click to show sportsmanship details">+</span></td>
+      <td>{{ s.rank }}</td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ s.player.player.id }}">{{ s.player.player.fullname }}</a>{% if not s.player.active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if s.player.ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %}</td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ s.player.id }}/army_list">{{ s.player.armylist.race.abbrev }}</a></td>
+      <td class="numeric">{{ s.player.base_sportsmanship }}</td>
+      <td class="numeric editable_favorite_opponent_votes" id="tplayer_{{ s.player.id }}" title="Click to edit">{{ s.player.favorite_opponent_votes }}</td>
+      <td class="numeric"><a href="/gentlemens_gt/sports/{{ tournament_id }}/{{ s.player.id }}/blackmarks">{{ s.player.black_marks }}</a></td>
+      <td class="numeric"><a href="/gentlemens_gt/sports/{{ tournament_id }}/{{ s.player.id }}/discretionary">{{ s.player.judges_discretion_sportsmanship }}</a></td>
+      <td class="numeric total">{{ s.player.sportsmanship_score }}</td>
+      <td><a href="/gentlemens_gt/sports/{{ tournament_id }}/{{ s.player.id }}/notes">Notes</a> ({{ s.player.sports_notes.count }})</td>
+    </tr>
+    <tr id="results_{{ s.player.id }}" class="sports_details" style="display:none">
+      <td class="column1"></td>
+      <td colspan="5">
+        {% if s.base_sports_positive %}
+        <i>Positive sportsmanship given to:</i> {{ s.base_sports_positive }}<br/>
+        {% endif %}
+        {% if s.base_sports_negative %}
+        <i>Negative sportsmanship given to:</i> {{ s.base_sports_negative }}<br/>
+        {% endif %}
+        {% if s.black_marks %}
+        <i>Black Marks given to:</i> {{ s.black_marks }}
+        {% endif %}
+      </td>
+      <td colspan="4">
+        {% if s.base_sports_positive_rcvd %}
+        <i>Positive sportsmanship received from:</i> {{ s.base_sports_positive_rcvd }}<br/>
+        {% endif %}
+        {% if s.base_sports_negative_rcvd %}
+        <i>Negative sportsmanship received from:</i> {{ s.base_sports_negative_rcvd }}<br/>
+        {% endif %}
+        {% if s.black_marks_rcvd %}
+        <i>Black Marks received from:</i> {{ s.black_marks_rcvd }}
+        {% endif %}
+      </td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{% else %}
+<p>You need to <a href="/gentlemens_gt/players/{{ tournament_id }}">add players to the tournament</a> before you can score sportsmanship.</p>
+{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+{% if sports_scores %}
+{% if inactive_players %}
+{% if include_inactives %}
+<p><a href="/gentlemens_gt/sports/{{ tournament_id }}">Hide Inactive Players</a></p>
+{% else %}
+<p><a href="/gentlemens_gt/sports/{{ tournament_id }}?include_inactives=True">Show Inactive Players</a></p>
+{% endif %}
+<p>Printable Sportsmanship Scores:<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<a id="printable_sportsmanship_{{ tournament_id }}" class="fakelink">actives only</a> | <a id="printable_sportsmanship_inactives_{{ tournament_id }}" class="fakelink">with inactives</a></p>
+{% else %}
+<p><a id="printable_sportsmanship_{{ tournament_id }}" class="fakelink">Printable Sportsmanship Scores</a></p>
+{% endif %}
+{% endif %}
+{% endblock %}

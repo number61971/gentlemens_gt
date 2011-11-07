@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block global_location %}players{% endblock %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/player.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/player.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+{% ifnotequal player_id '0' %}
+<h2>Edit Player Details</h2>
+{% else %}
+<h2>Create New Player</h2>
+{% endifnotequal %}
+<form id="player_edit" action="/gentlemens_gt/player/update" method="post">
+  <div>
+    Name:
+    {{ form.salutation }}
+    {{ form.firstname }}
+    {{ form.midname }}
+    {{ form.lastname }}
+    {{ form.suffix }}
+  </div>
+  {% if form.firstname.errors %}
+  <ul class="errorlist"><li>Enter a first name.</li></ul>
+  {% endif %}
+  {% if form.lastname.errors %}
+  <ul class="errorlist"><li>Enter a last name.</li></ul>
+  {% endif %}
+  <div>{{ form.phone.label }}: {{ form.phone }} &nbsp;
+    {{ form.email.label }}: {{ form.email }}
+  </div>
+  <fieldset>
+    <legend>Address</legend>
+    {% if form.state.errors %}
+    <ul class="errorlist"><li>A valid state abbreviation is required.</li></ul>
+    {% endif %}
+    {% if form.zip5.errors %}
+    <ul class="errorlist"><li>A valid ZIP is required.</li></ul>
+    {% endif %}
+    <div>
+      {{ form.addr_number }}
+      {{ form.addr_pre_dir }}
+      {{ form.addr_street }}
+      {{ form.addr_post_dir }}
+    </div>
+    <div>
+      {{ form.addr_secondary }}
+    </div>
+    <div>
+      {{ form.city }} {{ form.state }} {{ form.zip5 }}-{{ form.zip4 }}
+    </div>
+  </fieldset>
+  <div><input type="submit" value="Save"/>
+    <input type="button" id="cancel_button" value="Cancel"/>
+  </div>
+  <input type="hidden" name="id" value="{{ player_id }}"/>
+  <input type="hidden" name="tournament_id" id="tournament_id" value="{{ tournament_id }}"/>
+</form>
+{% endblock %}
+
+{% block sidebar %}
+{% if player %}
+<p><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ player_id }}/notes">Player Notes</a> ({{ player.notes.count }})</p>
+{% else %}
+<p>After you have saved your new player, edit it to add notes.</p>
+{% endif %}
+{% endblock %}

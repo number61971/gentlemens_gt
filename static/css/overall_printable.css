@@ -1,0 +1,9 @@
+body { font-size:12px }
+#print_command { float:right; color:blue; text-decoration:underline }
+#print_command:hover { cursor:pointer; text-decoration:none }
+#overall_scores { font-size:12px }
+.thspan { text-align:center; border-bottom:1px solid #282828; }
+.center { text-align:center }
+.numeric { text-align:center }
+.tablerow td { border-top:1px dotted gray; padding-right:1em }
+th { padding-right:1em; font-size:.8em }

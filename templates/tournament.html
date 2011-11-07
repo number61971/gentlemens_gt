@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/tournament.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/tournament.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+{% ifnotequal tournament_id '0' %}
+<h2>Edit Tournament Details</h2>
+{% else %}
+<h2>Create New Tournament</h2>
+{% endifnotequal %}
+<form id="tournament_edit" action="/gentlemens_gt/tournament/update" method="post">
+  <div>{{ form.name.label }}: {{ form.name }}
+    {% if form.name.errors %}
+    &nbsp; <span class="error">You must enter a name.</span>
+    {% endif %}
+  </div>
+  <div>{{ form.tagline.label }}: {{ form.tagline }}</div>
+  <div>{{ form.points_limit.label }}: {{ form.points_limit }}
+    {% if form.points_limit.errors %}
+    &nbsp; <span class="error">Enter a valid integer points limit (max 9999).</span>
+    {% endif %}
+  </div>
+  <div>{{ form.description.label }}: {{ form.description }}</div>
+  <div>
+    {{ form.start_date.label }}: {{ form.start_date }} &nbsp;
+    {{ form.end_date.label }}: {{ form.end_date }}
+    {% if form.start_date.errors %}
+    <br/><span class="error">Enter a valid Start Date.</span>
+    {% endif %}
+    {% if form.end_date.errors %}
+    <br/><span class="error">Enter a valid End Date.</span>
+    {% endif %}
+  </div>
+  <div>
+    {{ form.ranking_method.label }}: {{ form.ranking_method }} &nbsp;
+    {{ form.opponent_pairing_method.label }}: {{ form.opponent_pairing_method }}
+  </div>
+  <div><input type="submit" value="Save"/>
+    <input type="button" id="cancel_button" value="Cancel"/>
+  </div>
+  <input type="hidden" name="id" value="{{ tournament_id }}"/>
+</form>
+{% endblock %}
+
+{% block sidebar %}
+{% if tournament %}
+<p><a href="/gentlemens_gt/tournament/{{ tournament_id }}/notes">Tournament Notes</a> ({{ tournament.notes.count }})</p>
+{% else %}
+<p>After you have saved your new tournament, edit it to add notes.</p>
+{% endif %}
+{% endblock %}

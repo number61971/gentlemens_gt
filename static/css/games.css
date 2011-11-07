@@ -1,0 +1,8 @@
+#games_list { width:100%; font-size:.8em }
+.rank { color:#549900 }
+#games_list th { vertical-align:bottom; padding-right:6px }
+#games_list td { padding-right:6px; vertical-align:top }
+.thspan { text-align:center; border-bottom:1px solid #282828; }
+.center { text-align:center }
+.editable_mission_points { cursor:pointer; font-size:1.2em }
+.sports_column { white-space:nowrap; font-size:1.2em }

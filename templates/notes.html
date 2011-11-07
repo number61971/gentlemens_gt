@@ -1,0 +1,55 @@
+<h2>Notes</h2>
+<h3>{{ title }}</h3>
+<div id="new_note" class="fakelink" {% if valid_form %}{% else %}style="display:none;"{% endif %}>Add Note</div>
+<form id="notes_form" action="{{ action }}" method="post" {% if valid_form %}style="display:none;"{% endif %}>
+  <fieldset>
+    <table>
+      <tbody>
+        <tr>
+          <td class="label">{{ form.effective_date.label }}:</td>
+          <td class="data">{{ form.effective_date }}
+            {% if form.effective_date.errors %}
+            <span class="error">You must enter a valid date.</span>
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td class="label">{{ form.note.label }}:</td>
+          <td class="data">{{ form.note }}
+            {% if form.note.errors %}
+            <span class="error">You must enter some note text.</span>
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <input type="Submit" value="Submit"/>
+            <input type="button" value="Cancel" id="note_cancel"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <input type="hidden" name="id" value="{{ id }}"/>
+</form>
+{% if notes %}
+<table style="width:95%">
+  <thead>
+    <th class="date_column">Effective Date</th>
+    <th class="note_column">Note</th>
+    <th class="delete_column"></th>
+  </thead>
+  <tbody>
+    {% for n in notes %}
+    <tr id="note_{{ n.id }}" class="tablerow">
+      <td id="note_date_{{ n.id }}" class="date_column editable_date">{{ n.effective_date|date:'m/d/Y' }}</td>
+      <td id="note_text_{{ n.id }}" class="note_column editable_textarea">{% autoescape off %}{{ n.note }}{% endautoescape %}</td>
+      <td class="delete_column"><img id="delete_note_{{ n.id }}" src="/gentlemens_gt/static/img/action_delete.png" alt="Delete" title="Delete this note" class="fakelink"/></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No notes available.</p>
+{% endif %}

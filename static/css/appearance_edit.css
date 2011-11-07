@@ -1,0 +1,8 @@
+fieldset { margin-top:1em }
+legend+div { margin-top:0 }
+.label { font-weight:bold }
+.details { font-size:.8em; font-style:italic; padding-left:2em; margin-top:.5em }
+#appearance_edit select { font-size:.9em }
+#id_favorite_army_votes { width:2em }
+#appearance_total_form { width:5em }
+#appearance_total { text-align:center; font-weight:bold; font-size:1.5em }

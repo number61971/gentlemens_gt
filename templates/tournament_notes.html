@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/notes.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/notes.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+{% include 'notes.html' %}
+{% endblock %}
+
+{% block sidebar %}
+<p><a href="/gentlemens_gt/tournament/{{ tournament_id }}">Tournament Details</a></p>
+{% endblock %}
+

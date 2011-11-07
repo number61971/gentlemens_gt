@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block global_location %}overall{% endblock %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/overall.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/overall.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+<h2>Overall</h2>
+{% if overall_scores %}
+<p>The highest overall rank among tournament standings, appearance scores, and sportsmanship scores. Equal weight is given to each aspect. Tiebreakers, if required, are as follows.</p>
+<ul>
+  <li>Black Marks/Highest Discretionary Sportsmanship</li>
+  <li>Highest Extra Effort in Apperance</li>
+  <li>Most Tournament Wins</li>
+</ul>
+<table id="overall_scores">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th colspan="3" class="thspan">Rankings</th>
+    </tr>
+    <tr>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Army</th>
+      <th class="center">Standings</th>
+      <th class="center">Appearance</th>
+      <th class="center">Sportsmanship</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for o in overall_scores %}
+    <tr class="tablerow">
+      <td>{{ o.rank }}</td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ o.player.tplayer.player.id }}">{{ o.player.tplayer.player.fullname }}</a>{% ifequal o.player.tournament_rank 1 %}<span class="champion" title="Tournament Champion">*</span>{% endifequal %}{% ifequal o.player.appearance_rank 1 %}<span class="champion" title="Appearance Champion">*</span>{% endifequal %}{% ifequal o.player.sports_rank 1 %}<span class="champion" title="Sportsmanship Champion">*</span>{% endifequal %}{% if not o.player.tplayer.active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if o.player.tplayer.ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %}</td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ o.player.tplayer.id }}/army_list">{{ o.player.tplayer.armylist.race.name }}</a></td>
+      <td class="numeric">{% ifequal o.player.tournament_rank 1 %}<span class="champion">{% endifequal %}{{ o.player.tournament_rank }}{% ifequal o.player.tournament_rank 1 %}</span>{% endifequal %}</td>
+      <td class="numeric">{% ifequal o.player.appearance_rank 1 %}<span class="champion">{% endifequal %}{{ o.player.appearance_rank }}{% ifequal o.player.appearance_rank 1 %}</span>{% endifequal %}</td>
+      <td class="numeric">{% ifequal o.player.sports_rank 1 %}<span class="champion">{% endifequal %}{{ o.player.sports_rank }}{% ifequal o.player.sports_rank 1 %}</span>{% endifequal %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>You need to <a href="/gentlemens_gt/players/{{ tournament_id }}">add players to the tournament</a> before an overall winner can be determined.</p>
+{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+{% if overall_scores %}
+{% if inactive_players %}
+{% if include_inactives %}
+<p><a href="/gentlemens_gt/overall/{{ tournament_id }}">Hide Inactive Players</a></p>
+{% else %}
+<p><a href="/gentlemens_gt/overall/{{ tournament_id }}?include_inactives=True">Show Inactive Players</a></p>
+{% endif %}
+<p>Printable Overall Scores:<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<a id="printable_overall_{{ tournament_id }}" class="fakelink">actives only</a> | <a id="printable_overall_inactives_{{ tournament_id }}" class="fakelink">with inactives</a></p>
+{% else %}
+<p><a id="printable_overall_{{ tournament_id }}" class="fakelink">Printable Overall Scores</a></p>
+{% endif %}
+{% endif %}
+{% endblock %}

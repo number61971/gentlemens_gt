@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block global_location %}games{% endblock %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/games.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/games.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+<h2>{% ifnotequal round '0' %}Round {{ round }} {% endifnotequal %}Game Results</h2>
+{% if games_data %}
+<p>Click the mission points to edit scores.</p>
+<table id="games_list">
+  <thead>
+    <tr>
+      <th></th>
+      <th class="thspan" colspan="3">Player 1</th>
+      <th class="thspan" colspan="3">Player 2</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>Table</th>
+      <th>Name</th>
+      <th class="center">Mission<br/>Points</th>
+      <th class="center">Sports</th>
+      <th>Name</th>
+      <th class="center">Mission<br/>Points</th>
+      <th class="center">Sports</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for g in games_data %}
+    <tr class="tablerow">
+      <td>{{ g.table }}</td>
+      <td><span class="rank">{{ g.player1_rank }}</span> <a href="/gentlemens_gt/players/{{ tournament_id }}/{{ g.player1_id }}">{{ g.player1_name }}</a>{% if not g.player1_active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if g.player1_ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %} (<a href="/gentlemens_gt/players/{{ tournament_id }}/{{ g.tplayer1_id }}/army_list">{{ g.player1_race }}</a>)</td>
+      <td class="center editable_mission_points" id="game_{{ g.game_id }}_p1" title="Click to edit">{{ g.player1_mission_points }}</td>
+      <td class="sports_column"><form id="sports_form_{{ g.tplayer1_id }}_{{ g.tplayer2_id }}" action="" method="post"><span title="Positive sportsmanship from {{ g.player2_name }}"><input type="radio" name="sports_{{ g.tplayer1_id }}_{{ g.tplayer2_id }}" value="1"{% ifequal g.player1_sports 1 %} checked="checked"{% endifequal %}/><b>+</b></span>&nbsp;<span title="Negative sportsmanship from {{ g.player2_name }}"><input type="radio" name="sports_{{ g.tplayer1_id }}_{{ g.tplayer2_id }}" value="-1"{% ifequal g.player1_sports -1 %} checked="checked"{% endifequal %}/><b>&ndash;</b></span></form></td>
+      <td><span class="rank">{{ g.player2_rank }}</span> <a href="/gentlemens_gt/players/{{ tournament_id }}/{{ g.player2_id }}">{{ g.player2_name }}</a>{% if not g.player2_active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if g.player2_ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %} (<a href="/gentlemens_gt/players/{{ tournament_id }}/{{ g.tplayer2_id }}/army_list">{{ g.player2_race }}</a>)</td>
+      <td class="center editable_mission_points" id="game_{{ g.game_id }}_p2" title="Click to edit">{{ g.player2_mission_points }}</td>
+      <td class="sports_column"><form id="sports_form_{{ g.tplayer2_id }}_{{ g.tplayer1_id }}" action="" method="post"><span title="Positive sportsmanship from {{ g.player1_name }}"><input type="radio" name="sports_{{ g.tplayer2_id }}_{{ g.tplayer1_id }}" value="1"{% ifequal g.player2_sports 1 %} checked="checked"{% endifequal %}/><b>+</b></span>&nbsp;<span title="Negative sportsmanship from {{ g.player1_name }}"><input type="radio" name="sports_{{ g.tplayer2_id }}_{{ g.tplayer1_id }}" value="-1"{% ifequal g.player2_sports -1 %} checked="checked"{% endifequal %}/><b>&ndash;</b></span></form></td>
+      <td><a href="/gentlemens_gt/games/{{ tournament_id }}/{{ g.game_id }}/notes">Notes</a> ({{ g.notes.count }})</td>
+    </tr>
+    {% endfor %}
+  <tbody>
+</table>
+{% else %}
+  {% if player_count %}
+    {% ifnotequal round '0' %}
+    <p>You must generate pairings for this round.</p>
+    {% else %}
+    <p>You must begin a new round and generate pairings.</p>
+    {% endifnotequal %}
+  {% else %}
+  <p>You must <a href="/gentlemens_gt/players/{{ tournament_id }}">add players to the tournament</a> before you can set up games.</p>
+  {% endif %}
+{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+{% ifnotequal round '0' %}
+<form id="round_select_form" action="" method="post">
+  <p>{{ round_select_form.round_number.label }}: {{ round_select_form.round_number }}</p>
+  {{ round_select_form.tournament_id }}
+</form>
+{% endifnotequal %}
+{% ifnotequal round '0' %}
+<p><a href="/gentlemens_gt/games/{{ tournament_id }}/{{ round }}/pairings">{% if games_data %}Review{% else %}Generate{% endif %} Pairings</a></p>
+<p><a id="delete_round_{{ round }}" class="fakelink">Delete This Round{% if games_data %}'s Games{% endif %}</a></p>
+{% endifnotequal %}
+{% if player_count and games_data %}
+<p><a href="/gentlemens_gt/games/{{ tournament_id }}/new_round">Begin New Round</a></p>
+<p><a id="printable_games_{{ tournament_id }}_{{ round }}" class="fakelink">Printable Results</a></p>
+{% else %}
+  {% if player_count %}
+    {% ifequal round '0' %}
+    <p><a href="/gentlemens_gt/games/{{ tournament_id }}/new_round">Begin New Round</a></p>
+    {% endifequal %}
+  {% endif %}
+{% endif %}
+{% endblock %}

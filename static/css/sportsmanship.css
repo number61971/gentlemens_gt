@@ -1,0 +1,10 @@
+#sportsmanship_scores { width:100% }
+#sportsmanship_scores th { vertical-align:bottom; font-size:.8em }
+.center { text-align:center }
+.numeric { text-align:center }
+.total { font-weight:bold }
+.editable_favorite_opponent_votes { cursor:pointer }
+.show_base_sports { font-weight:bold; color:#639CBF; cursor:pointer; }
+.sports_details { font-size:.8em }
+.sports_details td { vertical-align:top }
+.sports_details td i { color:white }

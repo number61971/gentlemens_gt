@@ -1,0 +1,27 @@
+{% extends "base_printable.html" %}
+{% load humanize %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/armylist_printable.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/armylist_printable.js"></script>{% endblock %}
+
+{% block content %}
+<div id="print_command">[PRINT]</div>
+<h2>{{ tplayer.tournament.name }}</h2>
+<h3>{{ tplayer.player.fullname }}'s Army List&mdash;{{ tplayer.armylist.points_limit|intcomma }} pts</h3>
+<h4>{{ tplayer.armylist.race.name }}{% if tplayer.armylist.subrace %} ({{ tplayer.armylist.subrace }}){% endif %}{% if tplayer.armylist.description %}: {{ tplayer.armylist.description }}{% endif %}</h4>
+
+{% if tplayer.armylist.validate.0 %}
+{% else %}
+<div id="list_errors">
+  Army list is currently illegal.
+  <ul id="illegal_army_list_reasons">
+    {% for reason in tplayer.armylist.validate.1 %}
+    <li>{{ reason }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{% autoescape off %}{{ armylist }}{% endautoescape %}
+{% endblock %}

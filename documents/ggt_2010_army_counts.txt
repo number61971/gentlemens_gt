@@ -1,0 +1,13 @@
+army                 count  
+-------------------- -----
+Space Marines        5         
+Imperial Guard       4         
+Chaos Daemons        3         
+Chaos Space Marines  3         
+Necrons              2         
+Space Wolves         2         
+Blood Angels         1         
+Eldar                1         
+Orks                 1         
+Tau Empire           1         
+Witch Hunters        1

@@ -1,0 +1,8 @@
+body { font-size:12px }
+#print_command { float:right; color:blue; text-decoration:underline }
+#print_command:hover { cursor:pointer; text-decoration:none }
+#sportsmanship_scores { font-size:12px; }
+.numeric { text-align:right }
+.total { font-weight:bold }
+.tablerow td { border-top:1px dotted gray; padding-right:1em }
+th { padding-right:1em }

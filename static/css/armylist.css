@@ -1,0 +1,17 @@
+fieldset { margin-bottom:1em }
+#illegal_army_list_reasons { font-style:italic }
+#illegal_army_list_reasons li { margin-bottom:0; padding-bottom:.5em }
+#id_description { width:35em }
+th { vertical-align:bottom }
+#id_subrace { width:20em }
+#id_force_org_slot, #id_num_models, #id_type, #id_details, #id_points_cost, #unit_form th { font-size:.8em }
+#unit_form td { vertical-align:top }
+#unit_form .error { font-size:.8em }
+#id_details { width:20em }
+#id_num_models { width:2em }
+#id_points_cost { width:3em }
+.force_org_slot { margin-top: 1em }
+.army_list_unit { padding-left:5.75em; text-indent:-5.75em; line-height:normal; margin-top:.5em }
+.action_delete { margin-right: .5em }
+.points_cost { font-size: .8em }
+.army_list_total { border-top:1px solid #282828 }

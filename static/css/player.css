@@ -1,0 +1,11 @@
+#id_firstname, #id_lastname { width: 11em }
+#id_midname { width: 9em }
+#id_suffix { width: 3em }
+#id_addr_number, #id_zip5 {width: 3.5em}
+#id_addr_pre_dir, #id_addr_post_dir, #id_state { width: 2em }
+#id_addr_street { width: 14em }
+#id_addr_secondary { width: 14em }
+#id_addr_city { width: 10em }
+#id_zip4 { width: 3em }
+#id_phone { width: 8.5em }
+#id_email { width: 18em }

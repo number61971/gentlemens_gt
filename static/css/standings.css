@@ -1,0 +1,7 @@
+#standings { width:100%; font-size:.9em }
+#standings th { vertical-align:bottom; padding-right:6px; font-size:.9em }
+#standings td { vertical-align:top; padding-right:6px }
+.thspan { text-align:center; border-bottom:1px solid #282828; }
+.center { text-align:center }
+.player_results_summary { }
+.show_results { font-weight:bold; color:#639CBF; cursor:pointer; }

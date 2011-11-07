@@ -1,0 +1,6 @@
+#overall_scores { width:100% }
+#overall_scores th { vertical-align:bottom; font-size:.8em; padding-right:1em }
+.thspan { text-align:center; border-bottom:1px solid #282828; }
+.center { text-align:center }
+.numeric { text-align:center }
+.champion { color:#549900 }

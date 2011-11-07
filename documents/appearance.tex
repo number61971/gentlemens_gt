@@ -1,0 +1,179 @@
+\documentclass[10pt,notitlepage]{report}
+\usepackage[fleqn]{amsmath}
+\usepackage[letterpaper,pdftex]{geometry}
+\geometry{lmargin=.5in,rmargin=.5in,tmargin=.5in,bmargin=.5in}
+\pagestyle{empty}
+\newcommand{\scoredescr}[1]{\makebox[6in][r]{#1}}
+\newcommand{\descrdetails}[1]{\makebox[6in][r]{\textsf{#1}}}
+\newcommand{\score}[1]{\quad\textbf{#1}}
+\newcommand{\yes}{\quad\textit{Yes}}
+\newcommand{\no}{\quad\textit{No}}
+\newcommand{\entry}{\quad\rule{.5in}{.5pt}}
+\begin{document}
+\scriptsize
+\section*{Army Appearance Score Sheet}
+
+\vspace{12pt}
+Player: \rule{3in}{.5pt}\hspace{.5in}Army: \rule{3in}{.5pt}
+
+\vspace{6pt}
+\noindent Select one points score from each bracketed grouping.
+
+\subsection*{Army Basics}
+
+\begin{align*}
+\left.
+\begin{array}{r}
+\scoredescr{Army is more primer or bare plastic and metal than paint.\score{\phantom{1}0}} \\
+\scoredescr{Most, but not all, of the army has been painted to a minimal standard.\score{\phantom{1}5}} \\
+\scoredescr{The army is fully painted to the three-color standard.\score{10}} \\
+\textnormal{Effort beyond basecoating to three colors is clearly evident.\score{15}}
+\end{array}
+\right\rangle
+ & \entry
+\end{align*}
+
+\subsection*{Bases}
+\begin{align*}
+\left.
+\begin{array}{r}
+\scoredescr{Bases have basing materials (e.g., flock, sand, tiles) or details painted on them.\no\score{0}} \\
+\scoredescr{\yes\score{1}}
+\end{array}
+\right\rangle
+ & \entry \\
+\left.
+\begin{array}{r}
+\scoredescr{Bases have multiple basing materials (rocks/grass), extra details painted on them (cracks in tiles),\no\score{0}} \\
+\scoredescr{or basing is done very well.\phantom{\no\score{0}}} \\
+\scoredescr{\yes\score{1}}
+\end{array}
+\right\rangle
+ & \entry \\
+\left.
+\begin{array}{r}
+\scoredescr{Bases have extra details such as helmets, skulls, animals, building rubble, etc.\no\score{0}} \\
+\scoredescr{\yes\score{1}}
+\end{array}
+\right\rangle
+ & \entry \\
+\left.
+\begin{array}{r}
+\scoredescr{Very few (or none) of the bases have extra detailing, including highlighting/shading.\score{0}} \\
+\scoredescr{A noticeable portion of the army's bases have extra detailing, including highlighting/shading.\score{1}} \\
+\scoredescr{A significant majority of the bases have extra detailing, including highlighting/shading.\score{2}}
+\end{array}
+\right\rangle
+ & \entry
+\end{align*}
+
+\subsection*{Painting}
+
+\begin{align*}
+\left.
+\begin{array}{r}
+\scoredescr{Base colors are painted neatly.\no\score{0}} \\
+\scoredescr{\yes\score{1}}
+\end{array}
+\right\rangle
+ & \entry \\
+\left.
+\begin{array}{r}
+\scoredescr{Model details are painted (e.g., eyes, buckles, jewelry).\no\score{0}} \\
+\scoredescr{\yes\score{1}}
+\end{array}
+\right\rangle
+ & \entry \\
+\left.
+\begin{array}{r}
+\scoredescr{Details are painted, but are not remarkable.\score{0}} \\
+\scoredescr{Details are clean and noticeable.\score{1}} \\
+\scoredescr{Details have their own highlighting/shading.\score{2}}
+\end{array}
+\right\rangle
+ & \entry \\
+\descrdetails{Details have been manually created such as unit markings, banner artwork, blood marks, dirt and/or filigree on cloaks, etc.} \\[-3pt]
+\left.
+\begin{array}{r}
+\scoredescr{Very little to no freehand details.\score{0}} \\
+\scoredescr{Freehand detailing is evident in portions of the army.\score{1}} \\
+\scoredescr{Freehand detailing is common or very well executed.\score{2}}
+\end{array}
+\right\rangle
+ & \entry \\
+\descrdetails{Lines are neat, dry brushing is appropriate, inking/shading is controlled and not sloppy.} \\[-3pt]
+\left.
+\begin{array}{r}
+\scoredescr{Very little to no highlighting/shading.\score{0}} \\
+\scoredescr{Highlighting/shading is evident in most of the army.\score{1}} \\
+\scoredescr{Highlighting/shading is on nearly every model and very well executed.\score{2}}
+\end{array}
+\right\rangle
+ & \entry \\
+\descrdetails{Highlights have been blended, shaded, or layered well, beyond the basic techniques of dry brushing and inking.} \\[-3pt]
+\left.
+\begin{array}{r}
+\scoredescr{Nothing special.\score{0}} \\
+\scoredescr{Some to several models display advanced techniques (e.g., blending, layering).\score{1}} \\
+\scoredescr{Most models have been painted with well executed advanced techniques.\score{2}}
+\end{array}
+\right\rangle
+ & \entry \\
+\end{align*}
+
+\subsection*{Conversions}
+
+\begin{align*}
+\left.
+\begin{array}{r}
+\scoredescr{Almost nothing but stock GW kits.\score{\phantom{1}0}} \\
+\scoredescr{Some elementary conversions (e.g., arm/head swaps, minor reposing).\score{\phantom{1}2}} \\
+\scoredescr{Most units display at least a few basic conversions.\score{\phantom{1}4}} \\
+\scoredescr{At least half the army has been converted OR army has a few major conversions (e.g., sculpting, plasticard, multi-kit swaps).\score{\phantom{1}6}} \\
+\scoredescr{Most of the army has been modified from stock GW and/or major conversions are common.\score{\phantom{1}8}} \\
+\scoredescr{Almost the entire army has been converted OR army includes outstanding full sculpts/truly impressive scratch builds.\score{10}}
+\end{array}
+\right\rangle
+ & \entry
+\end{align*}
+
+\subsection*{Extra Effort}
+
+\begin{align*}
+\left.
+\begin{array}{r}
+\scoredescr{Modeled objectives were not supplied (e.g., player used poker chips).\score{0}} \\
+\scoredescr{Converted and painted models representing objectives were supplied.\score{1}}
+\end{array}
+\right\rangle
+ & \entry \\
+\left.
+\begin{array}{r}
+\scoredescr{No army display base supplied.\score{0}} \\
+\scoredescr{Player modeled a display base for the army.\score{1}}
+\end{array}
+\right\rangle
+ & \entry \\
+\descrdetails{\textbf{Judge's discretion.} Among ``the intagibles", the quality of a display base, if present, as it relates to the overall impression of the army,}\\[-3pt]
+\descrdetails{can/should be evaluated here. (Though a display base is not required to obtain a score here.)} \\[-3pt]
+\left.
+\begin{array}{r}
+\scoredescr{Regardless of execution, army lacks real impact/exemplary quality.\score{0}} \\
+\scoredescr{The army noticeably stands out from the crowd.\score{1}} \\
+\scoredescr{The army displays several outstanding and memorable features.\score{2}} \\
+\scoredescr{The army is one of the best presentations at this or any event.\score{3}}
+\end{array}
+\right\rangle
+ & \entry \\
+\descrdetails{Please write notes relating to \textbf{Extra Effort} on the back of this score sheet.} &
+\end{align*}
+
+\begin{align*}
+\begin{array}{r}
+\scoredescr{\textbf{Total:}}
+\phantom{\Biggr\rangle}
+\end{array}
+ & \entry 
+\end{align*}
+
+\end{document}

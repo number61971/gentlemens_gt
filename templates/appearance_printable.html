@@ -1,0 +1,51 @@
+{% extends "base_printable.html" %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/appearance_printable.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/appearance_printable.js"></script>{% endblock %}
+
+{% block content %}
+<div id="print_command">[PRINT]</div>
+<h2>{{ appearance_scores.0.appearance.player.tournament.name }}</h2>
+<h3>Appearance Scores</h3>
+<p>Composite score is calculated based on 85% judging and 15% player votes. Tiebreakers, if required, are as follows.</p>
+<ul>
+  <li>Judging Total</li>
+  <li>Judging Extras</li>
+  <li>Player Votes</li>
+</ul>
+<table id="appearance_scores">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Army</th>
+      <th>Basics</th>
+      <th>Bases</th>
+      <th>Paint</th>
+      <th>Conv</th>
+      <th>Extras</th>
+      <th>Total</th>
+      <th>Player<br/>Votes</th>
+      <th>Composite<br/>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in appearance_scores %}
+    <tr class="tablerow">
+      <td>{{ a.rank }}</td>
+      <td>{{ a.appearance.player.player.fullname }}{% if not a.appearance.player.active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if a.appearance.player.ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %}</td>
+      <td>{{ a.appearance.player.armylist.race.abbrev }}</td>
+      <td class="numeric">{{ a.appearance.army_basics }}</td>
+      <td class="numeric">{{ a.appearance.bases }}</td>
+      <td class="numeric">{{ a.appearance.painting }}</td>
+      <td class="numeric">{{ a.appearance.conversions }}</td>
+      <td class="numeric">{{ a.appearance.extras }}</td>
+      <td class="numeric total">{{ a.appearance.total }}</td>
+      <td class="numeric">{{ a.appearance.favorite_army_votes }}</td>
+      <td class="numeric total composite">{{ a.appearance.composite_score }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

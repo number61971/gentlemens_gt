@@ -1,0 +1,10 @@
+body { font-size:12px }
+#print_command { float:right; color:blue; text-decoration:underline }
+#print_command:hover { cursor:pointer; text-decoration:none }
+#list_errors { padding:1em 1em 0 1em; width:400px; border:1px dotted black }
+#illegal_army_list_reasons { font-style:italic; padding-left:1.5em }
+#illegal_army_list_reasons li { }
+.force_org_slot { margin-bottom:-0.5em }
+.army_list_unit { padding-left:4em; text-indent:-4em; }
+.points_cost { font-size: .8em }
+.army_list_total { border-top:1px solid #282828 }

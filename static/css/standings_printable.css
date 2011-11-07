@@ -1,0 +1,9 @@
+body { font-size:12px }
+#print_command { float:right; color:blue; text-decoration:underline }
+#print_command:hover { cursor:pointer; text-decoration:none }
+table { width:100%; font-size:.8em }
+th { vertical-align:bottom; padding-right:6px }
+td { padding-right:6px }
+.thspan { text-align:center; border-bottom:1px solid black; }
+.center { text-align:center }
+.tablerow td { border-top:1px dotted gray }

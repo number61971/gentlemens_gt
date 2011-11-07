@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block global_location %}appearance{% endblock %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/appearance.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/appearance.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+<h2>Appearance Scores</h2>
+{% if appearance_scores or unrated_players %}
+{% if appearance_scores %}
+<p>Composite score is calculated based on 85% judging and 15% player votes. Tiebreakers, if required, are as follows.</p>
+<ul>
+  <li>Judging Total</li>
+  <li>Judging Extras</li>
+  <li>Player Votes</li>
+</ul>
+<table id="appearance_scores">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Army</th>
+      <th>Basics</th>
+      <th>Bases</th>
+      <th>Paint</th>
+      <th>Conv</th>
+      <th>Extras</th>
+      <th>Total</th>
+      <th>Player<br/>Votes</th>
+      <th>Composite<br/>Score</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in appearance_scores %}
+    <tr class="tablerow">
+      <td>{{ a.rank }}</td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ a.appearance.player.player.id }}">{{ a.appearance.player.player.fullname }}</a>{% if not a.appearance.player.active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if a.appearance.player.ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %}</td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ a.appearance.player.id }}/army_list">{{ a.appearance.player.armylist.race.abbrev }}</a></td>
+      <td class="numeric">{{ a.appearance.army_basics }}</td>
+      <td class="numeric">{{ a.appearance.bases }}</td>
+      <td class="numeric">{{ a.appearance.painting }}</td>
+      <td class="numeric">{{ a.appearance.conversions }}</td>
+      <td class="numeric">{{ a.appearance.extras }}</td>
+      <td class="numeric total">{{ a.appearance.total }}</td>
+      <td class="numeric">{{ a.appearance.favorite_army_votes }}</td>
+      <td class="numeric total composite">{{ a.appearance.composite_score }}</td>
+      <td><a href="/gentlemens_gt/appearance/{{ tournament_id }}/{{ a.appearance.player.id }}">edit</a></td>
+      <td><a href="/gentlemens_gt/appearance/{{ tournament_id }}/{{ a.appearance.player.id }}/notes">Notes</a> ({{ a.appearance.notes.count }})</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No players have appearance scores.</p>
+{% endif %}
+{% if unrated_players %}
+<h2>Unrated</h2>
+<p>The following players have no appearance scores.</p>
+<table id="no_appearance_scores">
+  <thead>
+    <th>Player</th>
+    <th>Army</th>
+    <th></th>
+  </thead>
+  <tbody>
+    {% for p in unrated_players %}
+    <tr class="tablerow">
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ p.player.id }}">{{ p.player.fullname }}</a>{% if not p.active %}<span class="inactive" title="inactive">&dagger;</span>{% endif %}{% if p.ringer %}<span class="ringer" title="ringer">&reg;</span>{% endif %}</td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ p.id }}/army_list">{{ p.armylist.race.name }}</a></td>
+      <td><a href="/gentlemens_gt/appearance/{{ tournament_id }}/{{ p.id }}">Rate Appearance</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% else %}
+<p>You need to <a href="/gentlemens_gt/players/{{ tournament_id }}">add players to this tournament</a> before you can score their appearance.</p>
+{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+{% if appearance_scores %}
+{% if inactive_players %}
+{% if include_inactives %}
+<p><a href="/gentlemens_gt/appearance/{{ tournament_id }}">Hide Inactive Players</a></p>
+{% else %}
+<p><a href="/gentlemens_gt/appearance/{{ tournament_id }}?include_inactives=True">Show Inactive Players</a></p>
+{% endif %}
+<p>Printable Appearance Scores:<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<a id="printable_appearances_{{ tournament_id }}" class="fakelink">actives only</a> | <a id="printable_appearances_inactives_{{ tournament_id }}" class="fakelink">with inactives</a></p>
+{% else %}
+<p><a id="printable_appearances_{{ tournament_id }}" class="fakelink">Printable Appearance Scores</a></p>
+{% endif %}
+{% endif %}
+{% endblock %}

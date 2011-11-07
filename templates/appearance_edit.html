@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block global_location %}appearance{% endblock %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/appearance_edit.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/appearance_edit.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+<h2>Edit Appearance Score</h2>
+<h3>{{ tplayer.player.fullname }}: {{ tplayer.armylist.race.name }}
+{% if tplayer.armylist.description %}
+<i>({{ tplayer.armylist.description }})</i>
+{% endif %}
+</h3>
+<form id="appearance_edit" action="/gentlemens_gt/appearance/update" method="post">
+  <fieldset><legend>{{ form.army_basics.label }}</legend>
+    {{ form.army_basics }}
+  </fieldset>
+  <fieldset><legend>Basing</legend>
+    <div>
+      <span class="label">{{ form.bases_basic.label }}:</span>
+      {{ form.bases_basic }}
+      <div class="details">Bases have basing materials (flock/sand/tiles) or details painted on them.</div>
+    </div>
+    <div>
+      <span class="label">{{ form.bases_extra.label }}:</span>
+      {{ form.bases_extra }}
+      <div class="details">The bases have multiple basing materials (rocks/grass), extra details painted on them (cracks in tiles), or basing is done very well.</div>
+    </div>
+    <div>
+      <span class="label">{{ form.bases_highlighting_shading.label }}:</span>
+      {{ form.bases_highlighting_shading }}
+      <div class="details">Bases have highlighting/shading/dry brushing.</div>
+    </div>
+    <div>
+      <span class="label">{{ form.bases_special.label }}:</span>
+      {{ form.bases_special }}
+      <div class="details">There are extra details such as helmets, skulls, animals, building rubble, etc.</div>
+    </div>
+  </fieldset>
+  <fieldset><legend>Painting</legend>
+    <div>
+      <span class="label">{{ form.painting_basecoat.label }}:</span>
+      {{ form.painting_basecoat }}
+      <div class="details">Base colors are painted neatly.</div>
+    </div>
+    <div>
+      <span class="label">{{ form.painting_details.label }}:</span>
+      {{ form.painting_details }}
+      <div class="details">E.g., eyes, buckles, jewelry.</div>
+    </div>
+    <div>
+      <span class="label">{{ form.painting_details_quality.label }}:</span>
+      {{ form.painting_details_quality }}
+    </div>
+    <div>
+      <span class="label">{{ form.painting_freehand.label }}:</span>
+      {{ form.painting_freehand }}
+      <div class="details">Details have been created such as unit markings, banner artwork, blood marks, dirt and/or filigree on cloaks, etc.</div>
+    </div>
+    <div>
+      <span class="label">{{ form.painting_highlighting_shading.label }}:</span>
+      {{ form.painting_highlighting_shading }}
+      <div class="details">Lines are neat, dry brushing is appropriate, inking/shading is controlled and not sloppy.</div>
+    </div>
+    <div>
+      <span class="label">{{ form.painting_extra.label }}:</span>
+      {{ form.painting_extra }}
+      <div class="details">Highlights have been blended, shaded, or layered well, beyond the basic techniques of dry brushing and inking.</div>
+    </div>
+  </fieldset>
+  <fieldset><legend>{{ form.conversions.label }}</legend>
+    {{ form.conversions }}
+  </fieldset>
+  <fieldset><legend>Extra Effort</legend>
+    <div>
+      <span class="label">{{ form.objectives.label }}:</span>
+      {{ form.objectives }}
+    </div>
+    <div>
+      <span class="label">{{ form.display_base.label }}:</span>
+      {{ form.display_base }}
+    </div>
+    <div>
+      <span class="label">{{ form.something_special.label }}:</span>
+      {{ form.something_special }}
+      <div class="details">Judge's discretion. Among "the intagibles", the quality of a display base, if present, as it relates to the overall impression of the army, can/should be evaluated here. (Though a display base is not required to obtain a score here.)</div>
+      <div style="padding-left:1.7em"><a href="/gentlemens_gt/appearance/{{ tournament_id }}/{{ tplayer.id }}/notes">Enter Notes</a> explaining reasons behind any points awarded for "Something Special".</div>
+    </div>
+  </fieldset>
+  <fieldset><legend>{{ form.favorite_army_votes.label }}</legend>
+    {{ form.favorite_army_votes }}
+    {% if form.favorite_army_votes.errors %}
+    <span class="error">Input a valid number of votes.</span>
+    {% endif %}
+    <div class="details">Simple tabulation of votes from the players.</div>
+  </fieldset>
+  <div>
+    <input type="submit" value="Save"/>
+    <input type="button" id="cancel_button" value="Cancel"/>
+  </div>
+  <input type="hidden" name="tplayer_id" value="{{ tplayer.id }}"/>
+  <input type="hidden" id="tournament_id" name="tournament_id" value="{{ tplayer.id }}"/>
+</form>
+{% endblock %}
+
+{% block sidebar %}
+<form id="appearance_total_form" action="" method="post">
+  <fieldset><legend>Total Score</legend>
+    <div id="appearance_total"></div>
+    <div id="favorite_votes_total"></div>
+  </fieldset>
+</form>
+<p><a href="/gentlemens_gt/appearance/{{ tournament_id }}/{{ tplayer.id }}/notes">Appearance Notes</a> ({{ notes_count }})</p>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block global_location %}players{% endblock %}
+
+{% block localCSS %}<link rel="stylesheet" type="text/css" href="/gentlemens_gt/static/css/players.css"/>{% endblock %}
+
+{% block topJS %}<script type="text/javascript" src="/gentlemens_gt/static/js/players.js"></script>{% endblock %}
+
+{% block masthead %}{{ masthead }}{% endblock %}
+{% block tagline %}{{ tagline }}{% endblock %}
+
+{% block content %}
+<h2>Participating Players <span class="players_count">({{ tournament_players_count }})</span></h2>
+{% if tournament_players %}
+<table id="tournament_players_list">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Army</th>
+      <th>Active?</th>
+      <th>Ringer</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in tournament_players %}
+    <tr class="tablerow">
+      <td>
+        <a href="/gentlemens_gt/players/{{ tournament_id }}/{{ p.player.id }}">{{ p.player.fullname }}</a> &nbsp;
+        <a href="/gentlemens_gt/players/{{ tournament_id }}/{{ p.player.id }}/notes">({{ p.player.notes.count }} notes)</a>
+      </td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ p.id }}/army_list">{{ p.armylist.race }}</a></td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ p.id }}/toggle_active" {% if p.active %}title="Click to deactivate this player (i.e., no longer include in pairings) but preserve any scores">Yes{% else %} title="Click to activate this player (i.e., include in pairings, etc.)">No{% endif %}</a></td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ p.id }}/toggle_ringer" {% if p.ringer %}title="Click to remove ringer status">Yes{% else %}title="Click to mark as a ringer">--{% endif %}</a></td>
+      <td id="{{ tournament_id }}_{{ p.id }}"><a class="remove_from_tournament fakelink">Remove from tournament</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No players currently in tournament.</p>
+{% endif %}
+
+{% if other_players %}
+<h2>Non-participating Players <span class="players_count">({{ other_players_count }})</span></h2>
+<table id="other_players_list">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in other_players %}
+    <tr class="tablerow">
+      <td>
+        <a href="/gentlemens_gt/players/{{ tournament_id }}/{{ p.id }}">{{ p.fullname }}</a> &nbsp;
+        <a href="/gentlemens_gt/players/{{ tournament_id }}/{{ p.id }}/notes">({{ p.notes.count }} notes)</a>
+      </td>
+      <td><a href="/gentlemens_gt/players/{{ tournament_id }}/{{ p.id }}/add_to_tournament">Add to tournament</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+<p><a href="/gentlemens_gt/players/{{ tournament_id }}/0">Create</a></p>
+{% endblock %}
