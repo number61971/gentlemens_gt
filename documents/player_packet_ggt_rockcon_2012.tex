@@ -1,4 +1,4 @@
-\documentclass[12pt,titlepage]{article}
+\documentclass[10pt,titlepage]{article}
 \usepackage[letterpaper,pdftex]{geometry}
 \geometry{lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in}
 \usepackage{dashrule,latexsym}
@@ -11,19 +11,19 @@
 %
 \newcommand{\paragraphsmall}[1]{\noindent\textbf{#1}\quad}
 %
-\newcommand{\gameboilerplate}{This mission follows all the normal rules for games of Warhammer 40,000 as outlined in the \textbf{Fighting a Battle} chapter of the Warhammer 40,000 rulebook except as already noted in your tournament rules packet and described below.}
+\newcommand{\gameboilerplate}{This mission follows all the normal rules for games of Warhammer 40,000 as outlined in the \textbf{Fighting a Battle} chapter of the Warhammer 40,000 rulebook (e.g., \textbf{Variable Game Length}) except as already noted in your tournament rules packet and described below.}
 %
 \newcommand{\gamescoresheet}[1]{\subsection*{Round #1 Scores}
 
-\noindent Your name: \rule{1.35in}{.5pt}\hspace{.25in}Opponent's name: \rule{1.35in}{.5pt}\hspace{.25in}Table \#: \rule{24pt}{.5pt}
+\noindent Your name: \rule{1.6in}{.5pt}\hspace{.25in}Opponent's name: \rule{1.6in}{.5pt}\hspace{.25in}Table \#: \rule{24pt}{.5pt}
 
 \vspace{6pt}
-\noindent\begin{tabular}[t]{@{}l@{\quad}l@{\hspace{1.4in}}l@{\quad}l@{\quad}l@{}}
+\noindent\begin{tabular}[t]{@{}l@{\quad}l@{\hspace{1.65in}}l@{\quad}l@{\quad}l@{}}
  \multicolumn{2}{@{}l@{}}{\textit{Your Objectives}*} & \multicolumn{2}{@{}l@{}}{\textit{Opponent's Objectives}*} \\[3pt]
  \textbf{Primary} & 4 & \textbf{Primary} & 4 \\[3pt]
  \textbf{Secondary} & 3 & \textbf{Secondary} & 3 \\[3pt]
  \textbf{Tertiary} & 2 & \textbf{Tertiary} & 2 \\[3pt]
- \textbf{Default} & 1 & \textbf{Default} & 1 & {\scriptsize *See pp. 4--5 of this rules packet.}\\[3pt]
+ \textbf{Default} & 1 & \textbf{Default} & 1 & {\scriptsize *See p. 3 of this rules packet.}\\[3pt]
 \end{tabular}
 
 \vspace{6pt}
@@ -33,7 +33,7 @@
 
 }
 %
-\newcommand{\deploymentnotes}{Deploy fortifications and objective markers normally, except that players may not reposition the terrain. Furthermore, terrain is \textit{never} \textbf{Mysterious}. It is up to the players to decide the nature of the terrain in a mutually agreeable manner before the game begins. The player who won the choice of deployment zone then deploys his or her forces as described on p. 121 of the Warhammer 40,000 rulebook.}
+\newcommand{\deploymentnotes}{Deploy fortifications and objective markers normally, except that players may not reposition the terrain. Furthermore, terrain is \textit{never} Mysterious. It is up to the players to decide the nature of the terrain in a mutually agreeable manner before the game begins. The player who won the choice of deployment zone then deploys his or her forces as described on p. 121 of the Warhammer 40,000 rulebook.}
 %
 \newcommand{\hammerandanvil}{This mission employs the \textbf{Hammer and Anvil} deployment. (See p. 119 of the Warhammer 40,000 rulebook.) \deploymentnotes}
 %
@@ -55,7 +55,16 @@
 %
 \newcommand{\secondaryobjectives}{Earn any two of the following standard Victory Conditions as defined on p. 122 of the Warhammer 40,000 rulebook: \textbf{First Blood}, \textbf{Linebreaker}, \textbf{Slay the Warlord}.}
 %
-\newcommand{\tablequarters}{\paragraphsmall{Table Quarters} The table is divided into four quarters, formed by drawing two imaginary perpendicular lines through the center point. Players \textit{claim} a table quarter by having more \textit{Victory Points'} worth of units---including at least one \textit{Scoring Unit}---in the quarter than their opponent. For the purposes of this \textbf{Objective}, \textit{Scoring Units} are worth \textit{3 Victory Points} each, \textit{non-Scoring Units} are worth \textit{1 Victory Point} each. A player that has at least as many \textit{Victory Points'} worth of units in a quarter as their opponent but without any \textit{Scoring Units} has successfully \textit{contested} that quarter.
+\newcommand{\tablequarters}{\paragraphsmall{Table Quarters} The table is divided into four quarters, formed by drawing two imaginary perpendicular lines through the center point. Players \textit{claim} a table quarter by having more \textit{Victory Points'} worth of units---including at least one \textit{Scoring Unit}---in the quarter than their opponent. For the purposes of this \textbf{Objective}, \textit{Scoring Units} are worth \textit{3 Victory Points} each, \textit{non-Scoring Units} are worth \textit{1 Victory Point} each. However:
+
+\begin{itemize}
+\setlength{\itemsep}{0pt}
+  \item Dedicated Transports can only \textit{contest} an opponent's ownership of a table querter; they cannot \textit{claim} a table quarter.
+  \item Zooming Fliers can neither \textit{contest} nor \textit{claim} a table quarter. Fliers that are not Dedicated Transports may \textit{contest} or \textit{claim} a table quarter provided they are Hovering when the game ends.
+  \item Swooping Flying Monstrous creatures can nither \textit{contest} nor \textit{claim} a table quarter. Flying Monstrous Creatures may \textit{contest} or \textit{claim} a table quarter provided they are Gliding when the game ends.
+\end {itemize}
+  
+A player that has at least as many \textit{Victory Points'} worth of units in a quarter as their opponent but without any \textit{Scoring Units} has successfully \textit{contested} that quarter.
 
 A unit can only \textit{contest} or \textit{claim} a single table quarter, no matter how many quarters it actually straddles. A unit that is capable of \textit{contesting} or \textit{claiming} more than one table quarter will \textit{contest} or \textit{claim} the quarter where the majority of the unit resides. If you cannot determine in which quarter the majority of a unit resides, the owning player must randomly determine which quarter the unit ``counts as" \textit{claiming} or \textit{contesting}.
 
@@ -74,7 +83,7 @@ Objective markers must be at least \inches{6} away from any board edge and \inch
 
 While you \textit{claim} and \textit{contest} any objective markers according to the \textbf{Crusade} standard mission rules defined on p. 126 of the Warhammer 40,000 rulebook, the only ones that each player may count toward winning the ``Defend the Flag" Objective are the objective markers that have been placed in their half of the table. Thus, the maximum number of objective markers either player can \textit{claim} for the purposes of winning this \textbf{Objective} is three.}
 %
-\newcommand{vitaltech}{\paragraphsmall{Vital Tech} Follow the \textbf{Crusade} standard mission rules defined on p. 126 of the Warhammer 40,000 rulebook, \textit{ignoring the mission's Secondary Objectives}. Furthermore, you must employ 3 Primary Objectives, ignoring the rules for Mysterious Objectives. One objective marker must be placed in the exact center of each non-deployment table quarter, and one objective marker must be placed in the exact center of the table.}
+\newcommand{\vitaltech}{\paragraphsmall{Vital Tech} Follow the \textbf{Crusade} standard mission rules defined on p. 126 of the Warhammer 40,000 rulebook, \textit{ignoring the mission's Secondary Objectives}. Furthermore, you must employ 3 Primary Objectives, ignoring the rules for Mysterious Objectives. One objective marker must be placed in the exact center of each non-deployment table quarter, and one objective marker must be placed in the exact center of the table.}
 %
 \newcommand{\markedfordeath}{\paragraphsmall{Marked For Death} Both players openly nominate 5 units (not Force Organization choices, \textit{units}) from their opponent's army list, marking these choices on their copy of the army list.  Each player earns a ``Marked for Death" Victory Point for completely destroying each marked unit. The player who earns the most ``Marked for Death" Victory Points wins this \textbf{Objective}.
 
@@ -90,7 +99,16 @@ Units that are created during the course of play (e.g., Termagants created by Te
 %
 \newcommand{\digin}{\paragraphsmall{Dig In} Control more terrain pieces than your opponent. Terrain pieces are controlled when one or more of your units are inside or touching the terrain piece and no enemy units are inside or touching the terrain piece. Any unit except dedicated transports can \textit{claim} a terrain piece. Any unit can \textit{contest} ownership of a terrain piece.}
 %
-\newcommand{\domination}{\paragraphsmall{Domination} Have more \textit{Victory Points'} worth of units---including at least one \textit{Scoring Unit}---within \inches{12} of the table's center point than your opponent. At least 50\% of a unit must reside within this area to count. For the purposes of this \textbf{Objective}, \textit{Scoring Units} are worth \textit{3 Victory Points} each, non-\textit{Scoring Units} are worth \textit{1 Victory Point} each. A player that has at least as many \textit{Victory Points'} worth of units within range of the center as their opponent but without any \textit{Scoring Units} has successfully \textit{contested} this \textbf{Objective}.}
+\newcommand{\domination}{\paragraphsmall{Domination} Have more \textit{Victory Points'} worth of units---including at least one \textit{Scoring Unit}---within \inches{12} of the table's center point than your opponent. At least 50\% of a unit must reside within this area to count. For the purposes of this \textbf{Objective}, \textit{Scoring Units} are worth \textit{3 Victory Points} each, non-\textit{Scoring Units} are worth \textit{1 Victory Point} each. However:
+
+\begin{itemize}
+\setlength{\itemsep}{0pt}
+\item Dedicated Transports can only \textit{contest} an opponent's ownership of this \textbf{Objective}; they cannot \textit{claim} this \textbf{Objective}.
+\item Zooming Fliers can neither \textit{contest} nor \textit{claim} this \textbf{Objective}. Fliers that are not Dedicated Transports may \textit{contest} or \textit{claim} this \textbf{Objective} provided they are Hovering when the game ends.
+\item Swooping Flying Monstrous creatures can nither \textit{contest} nor \textit{claim} this \textbf{Objective}. Flying Monstrous Creatures may \textit{contest} or \textit{claim} this \textbf{Objective} provided they are Gliding when the game ends.
+\end {itemize}
+
+A player that has at least as many \textit{Victory Points'} worth of units within range of the center as their opponent but without any \textit{Scoring Units} has successfully \textit{contested} this \textbf{Objective}.}
 %
 \newcommand{\leadbyexample}{\paragraphsmall{Lead by Example} Have one of your HQ Independent Character, Monstrous Creature, or Walker models anywhere within your opponent's deployment zone.}
 
@@ -98,7 +116,7 @@ Units that are created during the course of play (e.g., Termagants created by Te
 \begin{titlepage}
 \title{The Gentlemen's Grand Tournament\\{\large\textit{A Weekend of Bloodletting and Crumpets}}}
 \author{RockCon}
-\date{November 20--21, 2012\\Rockford, Illinois}
+\date{October 20--21, 2012\\Rockford, Illinois}
 \maketitle
 \end{titlepage}
 
@@ -265,11 +283,11 @@ When you report the scores for your final game (Round 5) on Sunday, you \textit{
 
 The \textbf{Black Mark} is serious business. As with the \textbf{Favorite Opponent} vote, you can only nominate \textit{one} of your previous opponents. To be deserving of this vote, the opponent must be someone that was truly unpleasant to face. Your experience playing this person is one that you hope to never again repeat. The game you played besmirched your experience of this tournament.
 
-As with all votes, a \textbf{Black Mark} is registered secretly. No participants will ever know that you lodged this vote. However, a \textbf{Black Mark} vote is \textit{not} made anonymously! You must attach your name to the ballot along with your opponent's. And you must also supply one more reasons detailing why you believe the opponent so nominated deserves the \textbf{Mark}. Failing to do either of these things will result in the vote being discarded.
+As with all votes, a \textbf{Black Mark} is registered secretly. No participants will ever know that you lodged this vote. However, a \textbf{Black Mark} vote is \textit{not} made anonymously! You must attach your name to the ballot along with your opponent's. And you must also supply one or more reasons detailing why you believe the opponent so nominated deserves the \textbf{Mark}. Failing to do either of these things will result in the vote being discarded.
 
 \subsection*{Awards}
 
-Several awards will be presented at the tournament. Regardless of scoring, no participant may earn more than one award. If a participant is eligible for multiple awards, the Tournament Organizer shall decide which one to present to that person, promoting the next highest ranked participant for the other award(s).
+Several awards will be presented at the tournament. Regardless of scoring, no participant may earn more than one award. If a participant is eligible for multiple awards, the Tournament Organizer shall decide which one to present to that person, promoting the next highest ranked participant(s) for the other award(s).
 
 The following awards are all ``top" (first place) prizes, and are considered by the Tournament to be equivalent.
 
@@ -335,8 +353,6 @@ You are encouraged to supply feedback regarding your experiences at the tourname
 
 Thank you for participating! I hope you enjoyed the bloodletting, if not the crumpets.
 
-\newpage
-
 \section*{Schedule}
 \markright{Schedule}
 
@@ -363,14 +379,17 @@ Thank you for participating! I hope you enjoyed the bloodletting, if not the cru
 \pagestyle{empty}
 \section*{Black Mark}
 
-You \textit{may} nominate one of your opponents to receive a \textbf{Black Mark}. See page 6 of your tournament rules packet for guidelines before submitting your vote. \textit{If} you wish to submit this vote, turn it in after your final (Round 5) game on Sunday.
+You \textit{may} nominate one of your opponents to receive a \textbf{Black Mark}. See page 4 of your tournament rules packet for guidelines before submitting your vote. \textit{If} you wish to submit this vote, turn it in after your final (Round 5) game on Sunday.
 
 \vspace{24pt}
 
-\noindent Your name: \rule{1.8in}{.5pt}\hspace{.5in}Opponent's name: \rule{1.8in}{.5pt}
+\noindent Your name: \rule{2in}{.5pt}\hspace{.5in}Opponent's name: \rule{2in}{.5pt}
 
 \vspace{12pt}
-\noindent Reason(s): \rule{5.7in}{.5pt}
+\noindent Reason(s): \rule{5.8in}{.5pt}
+
+\vspace{12pt}
+\noindent\rule{6.5in}{.5pt}
 
 \vspace{12pt}
 \noindent\rule{6.5in}{.5pt}
@@ -383,100 +402,122 @@ You \textit{may} nominate one of your opponents to receive a \textbf{Black Mark}
 
 \section*{Favorite Opponent}
 
-You \textit{must} nominate one of your opponents as your \textbf{Favorite Opponent}. See page 5 of your tournament rules packet for guidelines. Please submit this vote after your final (Round 5) game on Sunday.
+You \textit{must} nominate one of your opponents as your \textbf{Favorite Opponent}. See page 4 of your tournament rules packet for guidelines. Please submit this vote after your final (Round 5) game on Sunday.
 
 \vspace{12pt}
 \noindent Opponent's name: \rule{5.25in}{.5pt}
 
-\vspace{108pt}
+\vspace{144pt}
 \dottedline
 
 \section*{Favorite Army}
 
-You \textit{must} nominate one tournament participant as having created your \textbf{Favorite Army}. See page 5 of your tournament rules packet for guidelines. Please submit this vote by the time you finish your Round 3 game on Saturday.
+You \textit{must} nominate one tournament participant as having created your \textbf{Favorite Army}. See page 4 of your tournament rules packet for guidelines. Please submit this vote by the time you finish your Round 3 game on Saturday.
 
 \vspace{12pt}
-\noindent Player's name: \rule{5.25in}{.5pt}
+\noindent Player's name: \rule{5.6in}{.5pt}
 
 \newpage
 \section*{Round 5}
 
+\vspace{-2pt}
 \subsection*{Heroic Denial}
 
 \gameboilerplate
 
+\vspace{-2pt}
 \subsubsection*{Deployment}
 
 \dawnofwar
 
+\vspace{-2pt}
 \subsubsection*{Primary Objective}
 
 \defendtheflag
 
+\vspace{-2pt}
 \subsubsection*{Secondary Objective}
 
 \leadbyexample
 
+\vspace{-2pt}
 \subsubsection*{Tertiary Objective}
 
 \secondaryobjectives
 
 \dottedline
 
+\vspace{-5pt}
 \gamescoresheet{5}
 
 \newpage
+{\footnotesize
 \section*{Round 4}
 
+\vspace{-1pt}
 \subsection*{Surgical Strike}
 
 \gameboilerplate
 
+\vspace{-1pt}
 \subsubsection*{Deployment}
 
 \spearhead
 
+\vspace{-1pt}
 \subsubsection*{Primary Objective}
 
 \vitaltech
 
+\vspace{-1pt}
 \subsubsection*{Secondary Objective}
 
 \markedfordeath
 
+\vspace{-1pt}
 \subsubsection*{Tertiary Objective}
 
 \secondaryobjectives
+}
 
 \dottedline
 
+\vspace{-4pt}
 \gamescoresheet{4}
 
 \newpage
+{\small
 \section*{Round 3}
 
+\vspace{-1pt}
 \subsection*{Take and Hold}
 
 \gameboilerplate
 
+\vspace{-1pt}
 \subsubsection*{Deployment}
 
 \vanguardstrike
 
+\vspace{-1pt}
 \subsubsection*{Primary Objective}
 
 \tablequarters
 
+\vspace{-1pt}
 \subsubsection*{Secondary Objective}
 
 \thescouring
 
+\vspace{-1pt}
 \subsubsection*{Tertiary Objective}
 
 \secondaryobjectives
+}
 
 \dottedline
 
+\vspace{-6pt}
 \gamescoresheet{3}
 
 \newpage
@@ -502,6 +543,7 @@ You \textit{must} nominate one tournament participant as having created your \te
 
 \secondaryobjectives
 
+\vspace{120pt}
 \dottedline
 
 \gamescoresheet{2}
@@ -531,6 +573,7 @@ You \textit{must} nominate one tournament participant as having created your \te
 
 \dottedline
 
+\vspace{-3pt}
 \gamescoresheet{1}
 
 \end{document}
