@@ -59,9 +59,14 @@ SECRET_KEY = '@_u_csvry1!9tfk@^js)4@ofm=jb%6d_$3sjoyc_(6+#gzzz=p'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
+# Commenting out the following lines for copatibility with django 1.4
+# See, e.g., https://github.com/bradwhittington/django-templated-email/issues/11
+# and http://stackoverflow.com/questions/11904609/configuring-django-settings-to-work-with-1-4-1-loading-template-error
+#    'django.template.loaders.filesystem.load_template_source',
+#    'django.template.loaders.app_directories.load_template_source',
 #     'django.template.loaders.eggs.load_template_source',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader'
 )
 
 MIDDLEWARE_CLASSES = (
