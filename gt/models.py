@@ -75,7 +75,13 @@ force_org_slots = (
     ('Elite','Elite'),
     ('Troop','Troop'),
     ('Fast Attack','Fast Attack'),
-    ('Heavy Support','Heavy Support')
+    ('Heavy Support','Heavy Support'),
+    ('Allied HQ','Allied HQ'),
+    ('Allied Elite','Allied Elite'),
+    ('Allied Troop','Allied Troop'),
+    ('Allied Fast Attack','Allied Fast Attack'),
+    ('Allied Heavy Support','Allied Heavy Support'),
+    ('Fortification','Fortification')
 )
 
 _ranking_methods = (
@@ -570,14 +576,25 @@ class ArmyList(models.Model):
                                    symmetrical=False)
 
     def validate(self):
-        hq_count = self.units.filter(
-                    force_org_slot='HQ', occupies_slot=True
-                    ).count()
         if self.race.name != 'Space Wolves':
             max_hq_count = 2
         else:
             max_hq_count = 4
-        hq_count_legal = hq_count > 0 and hq_count <= max_hq_count
+        max_troop_count = 6
+        max_elites_count = 3
+        max_fast_count = 3
+        max_heavy_count = 3
+        max_fortification_count = 1
+
+        max_allied_hq_count = 1
+        max_allied_troop_count = 2
+        max_allied_elites_count = 1
+        max_allied_fast_count = 1
+        max_allied_heavy_count = 1
+
+        hq_count = self.units.filter(
+                    force_org_slot='HQ', occupies_slot=True
+                    ).count()
         troop_count = self.units.filter(
                     force_org_slot='Troop', occupies_slot=True
                     ).count() 
@@ -590,31 +607,137 @@ class ArmyList(models.Model):
         heavy_count = self.units.filter(
                     force_org_slot='Heavy Support', occupies_slot=True
                     ).count() 
+        fortification_count = self.units.filter(
+                    force_org_slot='Fortification', occupies_slot=True
+                    ).count() 
+
+        allied_hq_count = self.units.filter(
+                    force_org_slot='Allied HQ', occupies_slot=True
+                    ).count()
+        allied_troop_count = self.units.filter(
+                    force_org_slot='Allied Troop', occupies_slot=True
+                    ).count() 
+        allied_elites_count = self.units.filter(
+                    force_org_slot='Allied Elite', occupies_slot=True
+                    ).count() 
+        allied_fast_count = self.units.filter(
+                    force_org_slot='Allied Fast Attack', occupies_slot=True
+                    ).count() 
+        allied_heavy_count = self.units.filter(
+                    force_org_slot='Allied Heavy Support', occupies_slot=True
+                    ).count() 
+
         points_total = self.points_total()
         points_limit = self.points_limit()
-        if hq_count_legal and troop_count > 1 and points_total <= points_limit \
-                and troop_count < 7 and elites_count < 4 and fast_count < 4 \
-                and heavy_count < 4:
+
+        if points_limit >= 2000:
+            max_hq_count *= 2
+            max_troop_count *= 2
+            max_elites_count *= 2
+            max_fast_count *= 2
+            max_heavy_count *= 2
+            max_fortification_count *= 2
+
+            max_allied_hq_count *= 2
+            max_allied_troop_count *= 2
+            max_allied_elites_count *= 2
+            max_allied_fast_count *= 2
+            max_allied_heavy_count *= 2
+
+        hq_count_legal = hq_count >= 1 and hq_count <= max_hq_count
+        troop_count_legal = troop_count >= 2 and troop_count <= max_troop_count
+        elites_count_legal = elites_count <= max_elites_count
+        fast_count_legal = fast_count <= max_fast_count
+        heavy_count_legal = heavy_count <= max_heavy_count
+        fortification_count_legal = fortification_count <= max_fortification_count
+
+        allied_hq_count_legal = True
+        allied_troop_count_legal = True
+        allied_elites_count_legal = True
+        allied_fast_count_legal = True
+        allied_heavy_count_legal = True
+        if allied_hq_count or allied_troop_count or allied_elites_count \
+                or allied_fast_count or allied_heavy_count:
+            if allied_hq_count > 0 and allied_troop_count == 0:
+                allied_troop_count_legal = False
+            elif allied_troop_count > 0 and allied_hq_count == 0:
+                allied_hq_count_legal = False
+            else:
+                if allied_hq_count > max_allied_hq_count:
+                    allied_hq_count_legal = False
+                if allied_troop_count > max_allied_troop_count:
+                    allied_troop_count_legal = False
+                if allied_elites_count > max_allied_elites_count:
+                    allied_elites_count_legal = False
+                if allied_fast_count > max_allied_fast_count:
+                    allied_fast_count_legal = False
+                if allied_heavy_count > max_allied_heavy_count:
+                    allied_heavy_count = False
+
+        if points_total <= points_limit and hq_count_legal \
+                  and troop_count_legal \
+                  and elites_count_legal \
+                  and fast_count_legal \
+                  and heavy_count_legal \
+                  and fortification_count_legal \
+                  and allied_hq_count_legal \
+                  and allied_troop_count_legal \
+                  and allied_elites_count_legal \
+                  and allied_fast_count_legal \
+                  and allied_heavy_count_legal:
             return (True, [])
         else:
             reasons = []
-            if not hq_count:
-                reasons.append('Requires at least 1 HQ choice')
-            elif not hq_count_legal:
-                reasons.append('Has %s HQ choices (%s max)' % (hq_count, max_hq_count))
-            if troop_count < 2:
-                reasons.append('Requires at least 2 Troops choices')
-            elif troop_count > 6:
-                reasons.append('Has %s Troop choices (6 max)' % troop_count)
-            if elites_count > 3:
-                reasons.append('Has %s Elite choices (3 max)' % elites_count)
-            if fast_count > 3:
-                reasons.append('Has %s Fast Attack choices (3 max)' % fast_count)
-            if heavy_count > 3:
-                reasons.append('Has %s Heavy Support choices (3 max)' % heavy_count)
             if points_total > points_limit:
                 reasons.append('List is %s points over the limit' % (
                                 points_total - points_limit))
+
+            if not hq_count:
+                reasons.append('Requires at least 1 HQ choice')
+            elif not hq_count_legal:
+                reasons.append('Has %s HQ choices (1 min; %s max)' % (
+                                          hq_count, max_hq_count))
+            if troop_count < 2:
+                reasons.append('Requires at least 2 Troops choices')
+            elif troop_count > max_troop_count:
+                reasons.append('Has %s Troop choices (2 min; %s max)' % (
+                                  min_troop_count, max_troop_count))
+            if elites_count > max_elites_count:
+                reasons.append('Has %s Elite choices (%s max)' % (
+                                  elites_count, max_elites_count))
+            if fast_count > max_fast_count:
+                reasons.append('Has %s Fast Attack choices (%s max)' % (
+                                  fast_count, max_fast_count))
+            if heavy_count > max_heavy_count:
+                reasons.append('Has %s Heavy Support choices (%s max)' % (
+                                  heavy_count, max_heavy_count))
+
+            if fortification_count > max_fortification_count:
+                reasons.append('Has %s Fortification choices (%s max)' % (
+                                  fortification_count, max_fortification_count))
+
+            if not allied_hq_count_legal:
+                if not allied_hq_count:
+                    reasons.append('Requires 1 Allied HQ choice')
+                else:
+                    reasons.append('Has %s Allied HQ choices (1 min; %s max)' % (
+                        allied_hq_count, max_allied_hq_count))
+            if not allied_troop_count_legal:
+                if not allied_troop_count:
+                    reasons.append('Requires 1 Allied Troop choice')
+                else:
+                    reasons.append('Has %s Allied Troop choices (1 min; %s max)' % (
+                        allied_troop_count, max_allied_troop_count))
+            if not allied_elites_count_legal:
+                reasons.append('Has %s Allied Elites choices (%s max)' % (
+                                allied_elites_count, max_allied_elites_count))
+            if not allied_fast_count_legal:
+                reasons.append('Has %s Allied Fast Attack choices (%s max)' % (
+                                allied_fast_count, max_allied_fast_count))
+            if not allied_heavy_count_legal:
+                reasons.append('Has %s Allied Heavy Support choices (%s max)' % (
+                                allied_heavy_count, max_allied_heavy_count))
+
             return (False, reasons)
 
     def points_limit(self):
