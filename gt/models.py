@@ -701,7 +701,7 @@ class ArmyList(models.Model):
                 reasons.append('Requires at least 2 Troops choices')
             elif troop_count > max_troop_count:
                 reasons.append('Has %s Troop choices (2 min; %s max)' % (
-                                  min_troop_count, max_troop_count))
+                                  troop_count, max_troop_count))
             if elites_count > max_elites_count:
                 reasons.append('Has %s Elite choices (%s max)' % (
                                   elites_count, max_elites_count))
