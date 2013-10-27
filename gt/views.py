@@ -662,7 +662,8 @@ def games_pairings(req, tournament_id, round_number):
         })
 
     # record each table's record of previous players
-    games = Game.objects.filter(round__round__lt=round_number).all()
+    games = Game.objects.filter(round__tournament=tournament,
+                                round__round__lt=round_number).all()
     table_players = {}
     for g in games:
         players = table_players.get(g.table, [])
